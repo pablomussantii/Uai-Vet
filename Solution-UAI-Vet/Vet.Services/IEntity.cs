@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vet.Domain
+namespace Vet.Services
 {
-    public class Class1
+   public interface IEntity
     {
+        int Id { get; }
     }
 }

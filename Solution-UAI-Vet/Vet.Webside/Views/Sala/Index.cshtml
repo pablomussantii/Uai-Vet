@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Room List</h2>
+<table class="table">
+    <tr>
+        <th>Nº</th>
+        <th>Name</th>
+        <th>Location</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Location</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
+            <td>@Html.ActionLink("Edit", "Update", new { id = item.Id })</td>
+            <td></td>
+        </tr>
+
+    }
+</table>
+
+
