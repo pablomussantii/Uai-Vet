@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vet.Services;
+using Vet.Domain;
+
 
 namespace Vet.Data
 {
@@ -13,40 +16,40 @@ namespace Vet.Data
         public void Delete(int id)
         {
             var db = new VetDbContext();
-            Room room = db.Rooms.Find(id);
-            db.Rooms.Remove(room);
+            Sala room = db.Salas.Find(id);
+            db.Salas.Remove(room);
             db.SaveChanges();
         }
 
-        public Room GetById(int id)
+        public Sala GetById(int id)
         {
             var db = new VetDbContext();
-            return db.Rooms.Find(id);
+            return db.Salas.Find(id);
         }
 
-        public void Insert(Room room)
+        public void Insert(Sala room)
         {
             var db = new VetDbContext();
-            db.Rooms.Add(room);
+            db.Salas.Add(room);
             db.SaveChanges();
         }
 
-        public IEnumerable<Room> List()
+        public IEnumerable<Sala> List()
         {
             var context = new VetDbContext();
-            var rooms = context.Rooms.ToList();
+            var rooms = context.Salas.ToList();
             return rooms;
 
         }
 
-        public void Update(Room entity)
+        public void Update(Sala entity)
         {
             var context = new VetDbContext();
-            Room editRoom = context.Rooms.Find(entity.Id);
+            Sala editRoom = context.Salas.Find(entity.Id);
             if (entity != null)
             {
-                editRoom.Location = entity.Location;
-                editRoom.Name = entity.Name;
+                editRoom.Localizacion = entity.Localizacion;
+                editRoom.Nombre = entity.Nombre;
             }
             context.SaveChanges();
         }

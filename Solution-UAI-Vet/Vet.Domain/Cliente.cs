@@ -7,16 +7,16 @@ using Vet.Services;
 
 namespace Vet.Domain
 {
-    public class Client : IEntity
+    public class Cliente : IEntity
     {
-        public Client()
+        public Cliente()
         {
-            Patients = new List<Patient>();
+            Pacientes = new List<Paciente>();
         }
 
         public int Id { get; set; }
-        public string FullName { get; set; }
+        public string NombreCompleto { get; set; }
         public string Email { get; set; }
-        public IList<Patient> Patients { get; private set; }
+        public IList<Paciente> Pacientes { get; private set; }
     }
 }

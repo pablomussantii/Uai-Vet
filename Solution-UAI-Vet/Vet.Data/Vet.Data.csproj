@@ -52,6 +52,10 @@
     <Compile Include="VetDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vet.Domain\Vet.Domain.csproj">
+      <Project>{97ac1d8c-af8c-4f4e-a800-23fb3c4a4032}</Project>
+      <Name>Vet.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vet.Services\Vet.Services.csproj">
       <Project>{b194c767-a33f-41cb-93f7-0cb6503a4297}</Project>
       <Name>Vet.Services</Name>

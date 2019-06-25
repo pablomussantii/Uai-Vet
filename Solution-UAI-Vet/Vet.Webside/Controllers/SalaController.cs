@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Vet.Domain;
 using Vet.Services;
+using Vet.Data;
+
+
 
 namespace Vet.Webside.Controllers
 {
@@ -24,7 +27,7 @@ namespace Vet.Webside.Controllers
             return View("Create");
         }
         [HttpPost]
-        public ActionResult Create(Room model)
+        public ActionResult Create(Sala model)
         {
             new RepositoryRoom().Insert(model);
             return RedirectToAction("Index");
@@ -37,11 +40,11 @@ namespace Vet.Webside.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            Room room = new RepositoryRoom().GetById(id);
+            Sala room = new RepositoryRoom().GetById(id);
             return View(room);
         }
         [HttpPost]
-        public ActionResult Update(Room room)
+        public ActionResult Update(Sala room)
         {
             new RepositoryRoom().Update(room);
             return RedirectToAction("Index");

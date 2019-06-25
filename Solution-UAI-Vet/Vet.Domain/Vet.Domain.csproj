@@ -52,12 +52,9 @@
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sala.cs" />
+    <Compile Include="SharedKernel\Gender.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vet.Data\Vet.Data.csproj">
-      <Project>{edc67502-2de4-4ddd-afce-aaa3792154da}</Project>
-      <Name>Vet.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Vet.Services\Vet.Services.csproj">
       <Project>{b194c767-a33f-41cb-93f7-0cb6503a4297}</Project>
       <Name>Vet.Services</Name>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web;
+using Vet.Domain;
 
 
 namespace Vet.Data
@@ -15,9 +16,9 @@ namespace Vet.Data
         {
 
         }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Patient> Patients { get; set; }
-        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Doctor> Doctores { get; set; }
+        public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Sala> Salas { get; set; }
     }
 }

@@ -3,12 +3,12 @@
     ViewBag.Title = "Update";
 }
 
-@model Vet.Domain.Room
+@model Vet.Domain.Sala
 
 
-<form action="~/Room/Update" method="post">
+<form action="~/Sala/Update" method="post">
     <input type="hidden" name="Id" id="Id" value="@Model.Id" />
     <input type="text" name="Location" id="Location" value="@Model.Location" /><br />
-    <input type="text" name="Name" id="Name" value="@Model.Name" /><br />
+    <input type="text" name="Name" id="Name" value="@Model.Nombre" /><br />
     <input type="submit" name="Submit" value="edit" />
 </form>

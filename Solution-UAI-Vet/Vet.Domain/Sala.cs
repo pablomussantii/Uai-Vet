@@ -8,25 +8,25 @@ using Vet.Services;
 
 namespace Vet.Domain
 {
-    public partial class Room : IEntity
+    public partial class Sala : IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Location { get; set; }
+        public string Nombre { get; set; }
+        public string Localizacion { get; set; }
     }
-    [MetadataType(typeof(RoomMetadata))]
-    public partial class Room
+    [MetadataType(typeof(SalaMetadata))]
+    public partial class Sala
     {
-        public class RoomMetadata
+        public class SalaMetadata
         {
             [Key]
             public int Id { get; set; }
             [StringLength(50)]
             [Required]
-            public string Name { get; set; }
+            public string Nombre { get; set; }
             [StringLength(50)]
             [Required]
-            public string Location { get; set; }
+            public string Localizacion { get; set; }
         }
     }
 }
