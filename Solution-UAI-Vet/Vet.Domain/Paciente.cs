@@ -18,5 +18,6 @@ namespace Vet.Domain
         public Cliente Dueño { get; private set; }
         public int ClientId { get; set; }
         public Genero Genero { get; set; }
+        public string Nombre { get; set; }
     }
 }

@@ -6,50 +6,48 @@ using System.Threading.Tasks;
 using Vet.Services;
 using Vet.Domain;
 
-
 namespace Vet.Data
 {
-    public class RepositoryRoom : IRepository<Sala>
+    public class RepositoryDoctor : IRepository<Doctor>
     {
-
-
         public void Delete(int id)
         {
             var db = new VetDbContext();
-            Sala room = db.Salas.Find(id);
-            db.Salas.Remove(room);
+            Doctor doctor = db.Doctores.Find(id);
+            db.Doctores.Remove(doctor);
             db.SaveChanges();
         }
 
-        public Sala GetById(int id)
+        public Doctor GetById(int id)
         {
             var db = new VetDbContext();
-            return db.Salas.Find(id);
+            return db.Doctores.Find(id);
         }
 
-        public void Insert(Sala room)
+        public void Insert(Doctor doctor)
         {
             var db = new VetDbContext();
-            db.Salas.Add(room);
+            db.Doctores.Add(doctor);
             db.SaveChanges();
         }
 
-        public IEnumerable<Sala> List()
+        public IEnumerable<Doctor> List()
         {
             var context = new VetDbContext();
-            var rooms = context.Salas.ToList();
-            return rooms;
+            var doctores = context.Doctores.ToList();
+            return doctores;
 
         }
 
-        public void Update(Sala entity)
+        public void Update(Doctor entity)
         {
             var context = new VetDbContext();
-            Sala editRoom = context.Salas.Find(entity.Id);
+            Doctor editdoctor = context.Doctores.Find(entity.Id);
             if (entity != null)
             {
-                editRoom.Localizacion = entity.Localizacion;
-                editRoom.Nombre = entity.Nombre;
+                editdoctor.Nombre = entity.Nombre;
+                editdoctor.Email = entity.Email;
+
             }
             context.SaveChanges();
         }
