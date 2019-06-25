@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Vet.Services;
 using Vet.Domain.SharedKernel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vet.Domain
 {
-    public class Paciente : IEntity
+    public partial class Paciente : IEntity
     {
         public Paciente()
         {
@@ -19,5 +20,23 @@ namespace Vet.Domain
         public int ClientId { get; set; }
         public Genero Genero { get; set; }
         public string Nombre { get; set; }
+    }
+
+    [MetadataType(typeof(PacienteMetadata))]
+    public partial class Cliente
+    {
+        public class PacienteMetadata
+        {
+            [Key]
+            public int Id { get; set; }
+            [StringLength(50)]
+            [Required]
+            public string Nombre { get; set; }
+            [StringLength(50)]
+            [Required]
+            public int ClientId { get; set; }
+            [Required]
+            public Genero Genero { get; set; }
+        }
     }
 }

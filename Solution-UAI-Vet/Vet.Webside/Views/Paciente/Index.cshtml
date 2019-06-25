@@ -3,12 +3,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Room List</h2>
+<h2>Doctor List</h2>
 <table class="table">
     <tr>
         <th>Nº</th>
         <th>Nombre</th>
-        <th>Localizacion</th>
+        <th>Email</th>
     </tr>
 
 
@@ -17,7 +17,7 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Nombre</td>
-            <td>@item.Localizacion</td>
+            <td>@item.Email</td>
             <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
             <td>@Html.ActionLink("Edit", "Update", new { id = item.Id })</td>
             <td></td>
@@ -25,5 +25,3 @@
 
     }
 </table>
-
-

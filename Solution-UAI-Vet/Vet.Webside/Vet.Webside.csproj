@@ -206,14 +206,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906250357370_segunda.cs" />
+    <Compile Include="Migrations\201906250357370_segunda.Designer.cs">
+      <DependentUpon>201906250357370_segunda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906250430157_tercera.cs" />
+    <Compile Include="Migrations\201906250430157_tercera.Designer.cs">
+      <DependentUpon>201906250430157_tercera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906250434095_t3.cs" />
+    <Compile Include="Migrations\201906250434095_t3.Designer.cs">
+      <DependentUpon>201906250434095_t3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906250508319_actualizacionmetadata.cs" />
+    <Compile Include="Migrations\201906250508319_actualizacionmetadata.Designer.cs">
+      <DependentUpon>201906250508319_actualizacionmetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906250527131_actualizacionmetadata1.cs" />
+    <Compile Include="Migrations\201906250527131_actualizacionmetadata1.Designer.cs">
+      <DependentUpon>201906250527131_actualizacionmetadata1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnetVet.Webside.mdf" />
+    <Content Include="App_Data\aspnetVet.Webside_log.ldf">
+      <DependentUpon>aspnetVet.Webside.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -276,13 +300,20 @@
     <Content Include="Views\Sala\Create.cshtml" />
     <Content Include="Views\Sala\Delete.cshtml" />
     <Content Include="Views\Sala\Update.cshtml" />
+    <Content Include="Views\Paciente\Create.cshtml" />
+    <Content Include="Views\Paciente\Index.cshtml" />
+    <Content Include="Views\Paciente\Delete.cshtml" />
+    <Content Include="Views\Paciente\Update.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Doctor\Update.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\Update.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Cliente\" />
-    <Folder Include="Views\Doctor\" />
-    <Folder Include="Views\Paciente\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -304,6 +335,23 @@
       <Project>{b194c767-a33f-41cb-93f7-0cb6503a4297}</Project>
       <Name>Vet.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906250357370_segunda.resx">
+      <DependentUpon>201906250357370_segunda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906250430157_tercera.resx">
+      <DependentUpon>201906250430157_tercera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906250434095_t3.resx">
+      <DependentUpon>201906250434095_t3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906250508319_actualizacionmetadata.resx">
+      <DependentUpon>201906250508319_actualizacionmetadata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906250527131_actualizacionmetadata1.resx">
+      <DependentUpon>201906250527131_actualizacionmetadata1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Vet.Services;
 
 namespace Vet.Domain
 {
-    public class Cliente : IEntity
+    public partial class Cliente : IEntity
     {
         public Cliente()
         {
@@ -19,4 +20,24 @@ namespace Vet.Domain
         public string Email { get; set; }
         public IList<Paciente> Pacientes { get; private set; }
     }
+
+    //[MetadataType(typeof(ClienteMetadata))]
+
+     
+    public partial class Cliente
+    {
+        public class ClienteMetadata
+        {
+            [Key]
+            public int Id { get; set; }
+            [StringLength(50)]
+            [Required]
+            public string NombreCompleto { get; set; }
+            [StringLength(50)]
+            [Required]
+            public string Email { get; set; }
+
+        }
+    }
+
 }

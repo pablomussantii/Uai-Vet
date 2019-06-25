@@ -3,12 +3,11 @@
     ViewBag.Title = "Update";
 }
 
-@model Vet.Domain.Sala
+<h2>Update</h2>
 
-
-<form action="~/Views/Sala/Update.cshtml" method="post">
+<form action="~/Views/Doctor/Update.cshtml" method="post">
     <input type="hidden" name="Id" id="Id" value="@Model.Id" />
-    <input type="text" name="Localizacion" id="Localizacion" value="@Model.Localizacion" /><br />
+    <input type="text" name="Email" id="Email" value="@Model.Email" /><br />
     <input type="text" name="Nombre" id="Nombre" value="@Model.Nombre" /><br />
     <input type="submit" name="Submit" value="edit" />
 </form>
