@@ -4,9 +4,6 @@ namespace Vet.Webside.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Vet.Domain;
-    using Vet.Data;
-    using Vet.Services;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Vet.Webside.Models.ApplicationDbContext>
     {
@@ -17,7 +14,10 @@ namespace Vet.Webside.Migrations
 
         protected override void Seed(Vet.Webside.Models.ApplicationDbContext context)
         {
-       
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
         }
     }
 }

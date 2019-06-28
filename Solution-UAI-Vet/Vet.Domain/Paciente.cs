@@ -32,9 +32,6 @@ namespace Vet.Domain
             [StringLength(50)]
             [Required]
             public string Nombre { get; set; }
-            [StringLength(50)]
-            [Required]
-            public int ClientId { get; set; }
             [Required]
             public Genero Genero { get; set; }
         }

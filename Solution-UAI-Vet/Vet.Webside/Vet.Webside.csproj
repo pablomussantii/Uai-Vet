@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Vet.Webside</RootNamespace>
     <AssemblyName>Vet.Webside</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -93,9 +93,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -206,25 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906250357370_segunda.cs" />
-    <Compile Include="Migrations\201906250357370_segunda.Designer.cs">
-      <DependentUpon>201906250357370_segunda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906250430157_tercera.cs" />
-    <Compile Include="Migrations\201906250430157_tercera.Designer.cs">
-      <DependentUpon>201906250430157_tercera.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906250434095_t3.cs" />
-    <Compile Include="Migrations\201906250434095_t3.Designer.cs">
-      <DependentUpon>201906250434095_t3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906250508319_actualizacionmetadata.cs" />
-    <Compile Include="Migrations\201906250508319_actualizacionmetadata.Designer.cs">
-      <DependentUpon>201906250508319_actualizacionmetadata.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906250527131_actualizacionmetadata1.cs" />
-    <Compile Include="Migrations\201906250527131_actualizacionmetadata1.Designer.cs">
-      <DependentUpon>201906250527131_actualizacionmetadata1.cs</DependentUpon>
+    <Compile Include="Migrations\201906280137049_InitialCreate.cs" />
+    <Compile Include="Migrations\201906280137049_InitialCreate.Designer.cs">
+      <DependentUpon>201906280137049_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -234,10 +218,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnetVet.Webside.mdf" />
-    <Content Include="App_Data\aspnetVet.Webside_log.ldf">
-      <DependentUpon>aspnetVet.Webside.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -313,7 +293,9 @@
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Update.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -337,20 +319,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906250357370_segunda.resx">
-      <DependentUpon>201906250357370_segunda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906250430157_tercera.resx">
-      <DependentUpon>201906250430157_tercera.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906250434095_t3.resx">
-      <DependentUpon>201906250434095_t3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906250508319_actualizacionmetadata.resx">
-      <DependentUpon>201906250508319_actualizacionmetadata.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906250527131_actualizacionmetadata1.resx">
-      <DependentUpon>201906250527131_actualizacionmetadata1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906280137049_InitialCreate.resx">
+      <DependentUpon>201906280137049_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
