@@ -21,7 +21,7 @@ namespace Vet.Domain
         public IList<Paciente> Pacientes { get; private set; }
     }
 
-    //[MetadataType(typeof(ClienteMetadata))]
+    [MetadataType(typeof(ClienteMetadata))]
 
      
     public partial class Cliente

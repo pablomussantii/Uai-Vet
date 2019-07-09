@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Vet.Domain.SharedKernel
 {
-    public enum Genero
+    public enum TipoEspecialidad
     {
-        Female = 1,
-        Male = 2
-    }
+        Sangre = 1,
+        Orina = 2,
+        Ecografia = 3,
+        Guardia = 4,
+        Emergencia = 5
 
+    }
 }

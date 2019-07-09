@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Vet.Domain.SharedKernel
 {
-    public enum Genero
+    public enum HorarioTurno
     {
-        Female = 1,
-        Male = 2
-    }
+        Noche = 1,
+        Mañana = 2,
+        Tarde = 3
 
+    }
 }

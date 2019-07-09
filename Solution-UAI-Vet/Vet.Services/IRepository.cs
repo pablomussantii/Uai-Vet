@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vet.Services
 {
-    public interface IRepository<TEntity> where TEntity : IEntity
+    public interface IRepository<TEntity> 
     {
         IEnumerable<TEntity> List();
         TEntity GetById(int id);

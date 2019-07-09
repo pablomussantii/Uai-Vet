@@ -1,38 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vet.Services;
-using Vet.Domain.SharedKernel;
 
 namespace Vet.Domain
 {
-    public partial class Doctor : IEntity
+    public partial class FacturaServicio : Factura
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Email { get; set; }
         public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
-        
     }
 
-    [MetadataType(typeof(DoctorMetadata))]
-    public partial class Doctor
+
+    [MetadataType(typeof(FacturaServicioMetadata))]
+
+    public partial class FacturaServicio
     {
-        public class DoctorMetadata
+        public class FacturaServicioMetadata
         {
             [Key]
+            [Column(Order = 1)]
             public int Id { get; set; }
-            [StringLength(50)]
+            [ForeignKey("Cliente")]
+            [Column(Order = 2)]
             [Required]
-            public string Nombre { get; set; }
-            [StringLength(50)]
+            public int IdCliente { get; set; }
             [Required]
-            public string Email { get; set; }
+            public DateTime Fecha { get; set; }
+            [Required]
+            public double Monto { get; set; }
             [Required]
             public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
         }
     }
+
+
 }

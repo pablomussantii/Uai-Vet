@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vet.Services;
-using Vet.Domain.SharedKernel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Vet.Domain
 {
-    public partial class Paciente : IEntity
+   public partial class Producto : IEntity
     {
-        public Paciente()
-        {
 
-        }
         public int Id { get; set; }
-        public Cliente Dueño { get; private set; }
-        public int ClientId { get; set; }
-        public Genero Genero { get; set; }
+
         public string Nombre { get; set; }
+
+        public double Precio { get; set; }
     }
 
-    [MetadataType(typeof(PacienteMetadata))]
-    public partial class Paciente
+    [MetadataType(typeof(ProductoMetadata))]
+
+    public partial class Producto
     {
-        public class PacienteMetadata
+        public class ProductoMetadata
         {
             [Key]
             public int Id { get; set; }
@@ -33,7 +31,8 @@ namespace Vet.Domain
             [Required]
             public string Nombre { get; set; }
             [Required]
-            public Genero Genero { get; set; }
+            public double Precio { get; set; }
+
         }
     }
 }
