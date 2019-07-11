@@ -116,7 +116,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AtencionController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\DetalleFacturaProductoController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\FacturaProductoController.cs" />
     <Compile Include="Controllers\FacturaServicioController.cs" />
@@ -156,21 +155,11 @@
     <Content Include="Views\Paciente\Details.cshtml" />
     <Content Include="Views\Paciente\Edit.cshtml" />
     <Content Include="Views\Paciente\Index.cshtml" />
-    <Content Include="Views\FacturaProducto\Create.cshtml" />
-    <Content Include="Views\FacturaProducto\Delete.cshtml" />
-    <Content Include="Views\FacturaProducto\Details.cshtml" />
-    <Content Include="Views\FacturaProducto\Edit.cshtml" />
-    <Content Include="Views\FacturaProducto\Index.cshtml" />
     <Content Include="Views\Atencion\Create.cshtml" />
     <Content Include="Views\Atencion\Delete.cshtml" />
     <Content Include="Views\Atencion\Details.cshtml" />
     <Content Include="Views\Atencion\Edit.cshtml" />
     <Content Include="Views\Atencion\Index.cshtml" />
-    <Content Include="Views\DetalleFacturaProducto\Create.cshtml" />
-    <Content Include="Views\DetalleFacturaProducto\Delete.cshtml" />
-    <Content Include="Views\DetalleFacturaProducto\Details.cshtml" />
-    <Content Include="Views\DetalleFacturaProducto\Edit.cshtml" />
-    <Content Include="Views\DetalleFacturaProducto\Index.cshtml" />
     <Content Include="Views\Sala\Create.cshtml" />
     <Content Include="Views\Sala\Delete.cshtml" />
     <Content Include="Views\Sala\Details.cshtml" />
@@ -191,6 +180,11 @@
     <Content Include="Views\FacturaServicio\Details.cshtml" />
     <Content Include="Views\FacturaServicio\Edit.cshtml" />
     <Content Include="Views\FacturaServicio\Index.cshtml" />
+    <Content Include="Views\FacturaProducto\Create.cshtml" />
+    <Content Include="Views\FacturaProducto\Delete.cshtml" />
+    <Content Include="Views\FacturaProducto\Details.cshtml" />
+    <Content Include="Views\FacturaProducto\Edit.cshtml" />
+    <Content Include="Views\FacturaProducto\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

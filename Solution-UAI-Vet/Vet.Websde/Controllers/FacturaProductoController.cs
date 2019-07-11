@@ -18,7 +18,7 @@ namespace Vet.Websde.Controllers
         // GET: FacturaProducto
         public ActionResult Index()
         {
-            var facturaProductos = db.FacturaProductos.Include(f => f.Cliente);
+            var facturaProductos = db.FacturaProductos.Include(f => f.Cliente).Include(f => f.Producto);
             return View(facturaProductos.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace Vet.Websde.Controllers
         public ActionResult Create()
         {
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto");
+            ViewBag.IdProducto = new SelectList(db.Productos, "Id", "Nombre");
             return View();
         }
 
@@ -49,21 +50,21 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fecha,IdCliente,Monto")] FacturaProducto facturaProducto)
+        public ActionResult Create([Bind(Include = "Id,IdCliente,IdProducto,Cantidad,Fecha,Monto")] FacturaProducto facturaProducto)
         {
             if (ModelState.IsValid)
             {
-                RepositoryDetalleFacturaProducto repositorydetallefacturaproducto = new RepositoryDetalleFacturaProducto();
-                RepositoryFacturaProducto repositoryfacturaproducto = new RepositoryFacturaProducto();
-
-
-
+                RepositoryProducto repositoryProducto = new RepositoryProducto();
+                Producto prod = new Producto();
+                prod = repositoryProducto.GetById(facturaProducto.IdProducto);
+                facturaProducto.Monto = prod.Precio * facturaProducto.Cantidad;
                 db.FacturaProductos.Add(facturaProducto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaProducto.IdCliente);
+            ViewBag.IdProducto = new SelectList(db.Productos, "Id", "Nombre", facturaProducto.IdProducto);
             return View(facturaProducto);
         }
 
@@ -80,6 +81,7 @@ namespace Vet.Websde.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaProducto.IdCliente);
+            ViewBag.IdProducto = new SelectList(db.Productos, "Id", "Nombre", facturaProducto.IdProducto);
             return View(facturaProducto);
         }
 
@@ -88,7 +90,7 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Fecha,IdCliente,Monto")] FacturaProducto facturaProducto)
+        public ActionResult Edit([Bind(Include = "Id,IdCliente,IdProducto,Cantidad,Fecha,Monto")] FacturaProducto facturaProducto)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +99,7 @@ namespace Vet.Websde.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaProducto.IdCliente);
+            ViewBag.IdProducto = new SelectList(db.Productos, "Id", "Nombre", facturaProducto.IdProducto);
             return View(facturaProducto);
         }
 

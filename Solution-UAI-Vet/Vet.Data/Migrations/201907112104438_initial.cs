@@ -69,31 +69,21 @@ namespace Vet.Data.Migrations
                 .Index(t => t.ClientId);
             
             CreateTable(
-                "dbo.DetalleFacturaProductoes",
-                c => new
-                    {
-                        IdFacturaProducto = c.Int(nullable: false),
-                        IdProducto = c.Int(nullable: false),
-                        Cantidad = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.IdFacturaProducto, t.IdProducto })
-                .ForeignKey("dbo.FacturaProductoes", t => t.IdFacturaProducto, cascadeDelete: true)
-                .ForeignKey("dbo.Productoes", t => t.IdProducto, cascadeDelete: true)
-                .Index(t => t.IdFacturaProducto)
-                .Index(t => t.IdProducto);
-            
-            CreateTable(
                 "dbo.FacturaProductoes",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         IdCliente = c.Int(nullable: false),
+                        IdProducto = c.Int(nullable: false),
+                        Cantidad = c.Int(nullable: false),
                         Fecha = c.DateTime(nullable: false),
                         Monto = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Clientes", t => t.IdCliente, cascadeDelete: true)
-                .Index(t => t.IdCliente);
+                .ForeignKey("dbo.Productoes", t => t.IdProducto, cascadeDelete: true)
+                .Index(t => t.IdCliente)
+                .Index(t => t.IdProducto);
             
             CreateTable(
                 "dbo.Productoes",
@@ -157,8 +147,7 @@ namespace Vet.Data.Migrations
             DropForeignKey("dbo.FacturaServicios", "IdTurno", "dbo.Turnoes");
             DropForeignKey("dbo.Turnoes", "IdPaciente", "dbo.Pacientes");
             DropForeignKey("dbo.Turnoes", "IdAtencion", "dbo.Atencions");
-            DropForeignKey("dbo.DetalleFacturaProductoes", "IdProducto", "dbo.Productoes");
-            DropForeignKey("dbo.DetalleFacturaProductoes", "IdFacturaProducto", "dbo.FacturaProductoes");
+            DropForeignKey("dbo.FacturaProductoes", "IdProducto", "dbo.Productoes");
             DropForeignKey("dbo.FacturaProductoes", "IdCliente", "dbo.Clientes");
             DropForeignKey("dbo.Pacientes", "ClientId", "dbo.Clientes");
             DropForeignKey("dbo.Atencions", "IdSala", "dbo.Salas");
@@ -167,9 +156,8 @@ namespace Vet.Data.Migrations
             DropIndex("dbo.Turnoes", new[] { "IdAtencion" });
             DropIndex("dbo.Turnoes", new[] { "IdPaciente" });
             DropIndex("dbo.FacturaServicios", new[] { "IdTurno" });
+            DropIndex("dbo.FacturaProductoes", new[] { "IdProducto" });
             DropIndex("dbo.FacturaProductoes", new[] { "IdCliente" });
-            DropIndex("dbo.DetalleFacturaProductoes", new[] { "IdProducto" });
-            DropIndex("dbo.DetalleFacturaProductoes", new[] { "IdFacturaProducto" });
             DropIndex("dbo.Pacientes", new[] { "ClientId" });
             DropIndex("dbo.Atencions", new[] { "IdSala" });
             DropIndex("dbo.Atencions", new[] { "IdDoctor" });
@@ -178,7 +166,6 @@ namespace Vet.Data.Migrations
             DropTable("dbo.FacturaServicios");
             DropTable("dbo.Productoes");
             DropTable("dbo.FacturaProductoes");
-            DropTable("dbo.DetalleFacturaProductoes");
             DropTable("dbo.Pacientes");
             DropTable("dbo.Clientes");
             DropTable("dbo.Salas");

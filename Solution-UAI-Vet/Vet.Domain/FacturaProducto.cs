@@ -13,6 +13,10 @@ namespace Vet.Domain
         public int IdCliente { get; set; }
         public Cliente Cliente { get; set; }
         public Producto Producto { get; set; }
+
+        public int IdProducto { get; set; }
+
+        public int Cantidad { get; set; }
     }
 
     [MetadataType(typeof(FacturaProductoMetadata))]
@@ -28,10 +32,17 @@ namespace Vet.Domain
             [Column(Order = 2)]
             [Required]
             public int IdCliente { get; set; }
+            [ForeignKey("Producto")]
+            [Column(Order = 3)]
+            [Required]
+            public int IdProducto { get; set; }
             [Required]
             public DateTime Fecha { get; set; }
             [Required]
             public double Monto { get; set; }
+            [Required]
+            public int Cantidad { get; set; }
+
         }
     }
 

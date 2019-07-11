@@ -6,6 +6,7 @@
 }
 
 
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -13,6 +14,12 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Cliente.NombreCompleto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fecha)
@@ -27,6 +34,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Cliente.NombreCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fecha)
