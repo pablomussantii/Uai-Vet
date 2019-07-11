@@ -46,10 +46,10 @@ namespace Vet.Data
             FacturaServicio edit = context.FacturaServicios.Find(entity.Id);
             if (entity != null)
             {
-                edit.Fecha = entity.Fecha;
-                edit.IdCliente = entity.IdCliente;
-                edit.Monto = entity.Monto;
-                edit.TipoEspecialidad = entity.TipoEspecialidad;
+                //edit.Fecha = entity.Fecha;
+                //edit.IdCliente = entity.IdCliente;
+                //edit.Monto = entity.Monto;
+                //edit.TipoEspecialidad = entity.TipoEspecialidad;
                
 
             }

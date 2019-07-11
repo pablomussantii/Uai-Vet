@@ -18,7 +18,7 @@ namespace Vet.Websde.Controllers
         // GET: FacturaServicio
         public ActionResult Index()
         {
-            var facturaServicios = db.FacturaServicios.Include(f => f.Cliente);
+            var facturaServicios = db.FacturaServicios.Include(f => f.Turno);
             return View(facturaServicios.ToList());
         }
 
@@ -40,7 +40,16 @@ namespace Vet.Websde.Controllers
         // GET: FacturaServicio/Create
         public ActionResult Create()
         {
-            ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto");
+            RepositoryTurno repositoryturno = new RepositoryTurno();
+            List<Turno> lstturno = new List<Turno>();
+            foreach (var item in repositoryturno.List())
+            {
+                if (item.Abonado == false)
+                {
+                    lstturno.Add(item);
+                }
+            }
+            ViewBag.IdTurno = new SelectList(lstturno, "Id", "Id");
             return View();
         }
 
@@ -49,16 +58,22 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TipoEspecialidad,Fecha,IdCliente,Monto")] FacturaServicio facturaServicio)
+        public ActionResult Create([Bind(Include = "Id,IdTurno,Fecha,Monto")] FacturaServicio facturaServicio)
         {
             if (ModelState.IsValid)
             {
+                RepositoryTurno repositoryturno = new RepositoryTurno();
+                Turno modelturno = new Turno();
+                modelturno = repositoryturno.GetById(facturaServicio.IdTurno);
+                modelturno.Abonado = true;
+                repositoryturno.Update(modelturno);
+
                 db.FacturaServicios.Add(facturaServicio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaServicio.IdCliente);
+            ViewBag.IdTurno = new SelectList(db.Turnos, "Id", "Id", facturaServicio.IdTurno);
             return View(facturaServicio);
         }
 
@@ -74,7 +89,7 @@ namespace Vet.Websde.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaServicio.IdCliente);
+            ViewBag.IdTurno = new SelectList(db.Turnos, "Id", "Id", facturaServicio.IdTurno);
             return View(facturaServicio);
         }
 
@@ -83,7 +98,7 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TipoEspecialidad,Fecha,IdCliente,Monto")] FacturaServicio facturaServicio)
+        public ActionResult Edit([Bind(Include = "Id,IdTurno,Fecha,Monto")] FacturaServicio facturaServicio)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +106,7 @@ namespace Vet.Websde.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaServicio.IdCliente);
+            ViewBag.IdTurno = new SelectList(db.Turnos, "Id", "Id", facturaServicio.IdTurno);
             return View(facturaServicio);
         }
 

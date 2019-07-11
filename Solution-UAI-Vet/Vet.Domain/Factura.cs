@@ -13,7 +13,7 @@ namespace Vet.Domain
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
-        public int IdCliente { get; set; }
+        
         public double Monto { get; set; }
 
       
@@ -29,10 +29,6 @@ namespace Vet.Domain
             [Key]
             [Column(Order = 1)]
             public int Id { get; set; }
-            [ForeignKey("Cliente")]
-            [Column(Order = 2)]
-            [Required]
-            public int IdCliente { get; set; }
             [Required]
             public DateTime Fecha { get; set; }
             [Required]

@@ -86,11 +86,13 @@ namespace Vet.Websde.Controllers
                 {
 
                     RepositoryAtencion repositoryatencion = new RepositoryAtencion();
+                    
                     RepositoryTurno repositoryTurno = new RepositoryTurno();
                     Atencion natencion = new Atencion();
                     natencion = repositoryatencion.GetById(turno.IdAtencion);
                     int valor = 0;
-                    ViewBag.advertencia2 = "No corresponde la atencion con lo que se solicita";
+                    //ViewBag.advertencia2 = "No corresponde la atencion con lo que se solicita";
+                    //int valor2 = 0;
                     foreach (var item in repositoryTurno.List())
                     {
                         if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
@@ -98,6 +100,13 @@ namespace Vet.Websde.Controllers
                             ViewBag.advertencia = "Ya hay alguien asignado en este horario";
                             valor = 1;
                         }
+
+                        //valor2 = Convert.ChangeType(natencion.HorarioTurno,natencion.HorarioTurno.GetTypeCode());
+                        //if (natencion.HorarioTurno.ToString == "Tarde")
+                        //{
+
+                        //}
+
                     }
                     if (valor == 1)
                     {

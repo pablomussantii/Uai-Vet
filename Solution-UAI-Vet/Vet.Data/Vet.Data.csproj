@@ -55,13 +55,9 @@
     <Compile Include="FacturaProductoData.cs" />
     <Compile Include="FacturaServicioData.cs" />
     <Compile Include="HistorialPacienteData.cs" />
-    <Compile Include="Migrations\201907110623436_initial.cs" />
-    <Compile Include="Migrations\201907110623436_initial.Designer.cs">
-      <DependentUpon>201907110623436_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907110711089_initial2.cs" />
-    <Compile Include="Migrations\201907110711089_initial2.Designer.cs">
-      <DependentUpon>201907110711089_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\201907111909220_initial.cs" />
+    <Compile Include="Migrations\201907111909220_initial.Designer.cs">
+      <DependentUpon>201907111909220_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PatientData.cs" />
@@ -95,11 +91,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907110623436_initial.resx">
-      <DependentUpon>201907110623436_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907110711089_initial2.resx">
-      <DependentUpon>201907110711089_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907111909220_initial.resx">
+      <DependentUpon>201907111909220_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

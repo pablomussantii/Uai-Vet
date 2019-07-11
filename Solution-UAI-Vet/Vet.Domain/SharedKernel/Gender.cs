@@ -8,8 +8,8 @@ namespace Vet.Domain.SharedKernel
 {
     public enum Genero
     {
-        Female = 1,
-        Male = 2
+        Femenino = 1,
+        Masculino = 2
     }
 
 }

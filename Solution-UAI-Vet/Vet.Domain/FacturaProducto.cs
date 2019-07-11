@@ -10,8 +10,9 @@ namespace Vet.Domain
 {
    public partial class FacturaProducto : Factura
     {
-
+        public int IdCliente { get; set; }
         public Cliente Cliente { get; set; }
+        public Producto Producto { get; set; }
     }
 
     [MetadataType(typeof(FacturaProductoMetadata))]

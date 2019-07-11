@@ -5,26 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<h2>Details</h2>
 
 <div>
     <h4>FacturaServicio</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Cliente.NombreCompleto)
+            @Html.DisplayNameFor(model => model.Turno.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cliente.NombreCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoEspecialidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoEspecialidad)
+            @Html.DisplayFor(model => model.Turno.Id)
         </dd>
 
         <dt>

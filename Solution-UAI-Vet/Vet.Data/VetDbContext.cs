@@ -12,7 +12,7 @@ namespace Vet.Data
 {
     public class VetDbContext : DbContext
     {
-        public VetDbContext() : base("Data Source=DESKTOP-0LE6IUG;Initial Catalog=BD2;Integrated Security=True")
+        public VetDbContext() : base("Data Source=DESKTOP-0LE6IUG;Initial Catalog=bD3;Integrated Security=True")
         {
 
         }
@@ -28,5 +28,8 @@ namespace Vet.Data
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Sala> Salas { get; set; }
 
+
     }
+
+    
 }

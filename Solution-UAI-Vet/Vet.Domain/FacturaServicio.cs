@@ -10,31 +10,36 @@ namespace Vet.Domain
 {
     public partial class FacturaServicio : Factura
     {
-        public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
+        public int IdTurno { get; set; }
 
-        public Cliente Cliente { get; set; }
+        //public Cliente Cliente { get; set; }
+
+        public Turno Turno { get; set; }
     }
 
 
     [MetadataType(typeof(FacturaServicioMetadata))]
 
-    public partial class FacturaServicio : Factura
+    public partial class FacturaServicio 
     {
         public class FacturaServicioMetadata
         {
             [Key]
             [Column(Order = 1)]
             public int Id { get; set; }
-            [ForeignKey("Cliente")]
-            [Column(Order = 2)]
+            //[ForeignKey("Cliente")]
+            //[Column(Order = 2)]
+            //[Required]
+            //public int IdCliente { get; set; }
+            [ForeignKey("Turno")]
+            [Column(Order = 3)]
             [Required]
-            public int IdCliente { get; set; }
+            public int IdTurno { get; set; }
             [Required]
             public DateTime Fecha { get; set; }
             [Required]
             public double Monto { get; set; }
-            [Required]
-            public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
+
         }
     }
 

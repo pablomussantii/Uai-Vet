@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -13,19 +13,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Cliente.NombreCompleto)
+            @Html.DisplayNameFor(model => model.Turno.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cliente.NombreCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoEspecialidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoEspecialidad)
+            @Html.DisplayFor(model => model.Turno.Id)
         </dd>
 
         <dt>

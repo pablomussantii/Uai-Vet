@@ -110,26 +110,13 @@ namespace Vet.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IdCliente = c.Int(nullable: false),
-                        TipoEspecialidad = c.Int(nullable: false),
+                        IdTurno = c.Int(nullable: false),
                         Fecha = c.DateTime(nullable: false),
                         Monto = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Clientes", t => t.IdCliente, cascadeDelete: true)
-                .Index(t => t.IdCliente);
-            
-            CreateTable(
-                "dbo.HistorialPacientes",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        IdPaciente = c.Int(nullable: false),
-                        Descripcion = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Pacientes", t => t.IdPaciente, cascadeDelete: true)
-                .Index(t => t.IdPaciente);
+                .ForeignKey("dbo.Turnoes", t => t.IdTurno, cascadeDelete: true)
+                .Index(t => t.IdTurno);
             
             CreateTable(
                 "dbo.Turnoes",
@@ -149,32 +136,45 @@ namespace Vet.Data.Migrations
                 .Index(t => t.IdPaciente)
                 .Index(t => t.IdAtencion);
             
+            CreateTable(
+                "dbo.HistorialPacientes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        IdPaciente = c.Int(nullable: false),
+                        Descripcion = c.String(nullable: false),
+                        Fecha = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pacientes", t => t.IdPaciente, cascadeDelete: true)
+                .Index(t => t.IdPaciente);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.HistorialPacientes", "IdPaciente", "dbo.Pacientes");
+            DropForeignKey("dbo.FacturaServicios", "IdTurno", "dbo.Turnoes");
             DropForeignKey("dbo.Turnoes", "IdPaciente", "dbo.Pacientes");
             DropForeignKey("dbo.Turnoes", "IdAtencion", "dbo.Atencions");
-            DropForeignKey("dbo.HistorialPacientes", "IdPaciente", "dbo.Pacientes");
-            DropForeignKey("dbo.FacturaServicios", "IdCliente", "dbo.Clientes");
             DropForeignKey("dbo.DetalleFacturaProductoes", "IdProducto", "dbo.Productoes");
             DropForeignKey("dbo.DetalleFacturaProductoes", "IdFacturaProducto", "dbo.FacturaProductoes");
             DropForeignKey("dbo.FacturaProductoes", "IdCliente", "dbo.Clientes");
             DropForeignKey("dbo.Pacientes", "ClientId", "dbo.Clientes");
             DropForeignKey("dbo.Atencions", "IdSala", "dbo.Salas");
             DropForeignKey("dbo.Atencions", "IdDoctor", "dbo.Doctors");
+            DropIndex("dbo.HistorialPacientes", new[] { "IdPaciente" });
             DropIndex("dbo.Turnoes", new[] { "IdAtencion" });
             DropIndex("dbo.Turnoes", new[] { "IdPaciente" });
-            DropIndex("dbo.HistorialPacientes", new[] { "IdPaciente" });
-            DropIndex("dbo.FacturaServicios", new[] { "IdCliente" });
+            DropIndex("dbo.FacturaServicios", new[] { "IdTurno" });
             DropIndex("dbo.FacturaProductoes", new[] { "IdCliente" });
             DropIndex("dbo.DetalleFacturaProductoes", new[] { "IdProducto" });
             DropIndex("dbo.DetalleFacturaProductoes", new[] { "IdFacturaProducto" });
             DropIndex("dbo.Pacientes", new[] { "ClientId" });
             DropIndex("dbo.Atencions", new[] { "IdSala" });
             DropIndex("dbo.Atencions", new[] { "IdDoctor" });
-            DropTable("dbo.Turnoes");
             DropTable("dbo.HistorialPacientes");
+            DropTable("dbo.Turnoes");
             DropTable("dbo.FacturaServicios");
             DropTable("dbo.Productoes");
             DropTable("dbo.FacturaProductoes");

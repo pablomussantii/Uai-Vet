@@ -161,11 +161,6 @@
     <Content Include="Views\FacturaProducto\Details.cshtml" />
     <Content Include="Views\FacturaProducto\Edit.cshtml" />
     <Content Include="Views\FacturaProducto\Index.cshtml" />
-    <Content Include="Views\FacturaServicio\Create.cshtml" />
-    <Content Include="Views\FacturaServicio\Delete.cshtml" />
-    <Content Include="Views\FacturaServicio\Details.cshtml" />
-    <Content Include="Views\FacturaServicio\Edit.cshtml" />
-    <Content Include="Views\FacturaServicio\Index.cshtml" />
     <Content Include="Views\Atencion\Create.cshtml" />
     <Content Include="Views\Atencion\Delete.cshtml" />
     <Content Include="Views\Atencion\Details.cshtml" />
@@ -191,6 +186,11 @@
     <Content Include="Views\HistorialPaciente\Details.cshtml" />
     <Content Include="Views\HistorialPaciente\Edit.cshtml" />
     <Content Include="Views\HistorialPaciente\Index.cshtml" />
+    <Content Include="Views\FacturaServicio\Create.cshtml" />
+    <Content Include="Views\FacturaServicio\Delete.cshtml" />
+    <Content Include="Views\FacturaServicio\Details.cshtml" />
+    <Content Include="Views\FacturaServicio\Edit.cshtml" />
+    <Content Include="Views\FacturaServicio\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
