@@ -1,50 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Vet.Domain;
-using Vet.Services;
 using Vet.Data;
+using Vet.Domain;
 
 namespace Vet.Webside.Controllers
 {
     public class DoctorController : Controller
     {
+        private VetDbContext db = new VetDbContext();
+
+        // GET: Doctor
         public ActionResult Index()
         {
-            var doctores = new RepositoryDoctor().List();
-            return View(doctores);
+            return View(db.Doctores.ToList());
         }
 
-        [HttpGet]
-        public ActionResult Create()
+        // GET: Doctor/Details/5
+        public ActionResult Details(int? id)
         {
-
-            return View("Create");
-        }
-        [HttpPost]
-        public ActionResult Create(Doctor model)
-        {
-            new RepositoryDoctor().Insert(model);
-            return RedirectToAction("Index");
-        }
-        public ActionResult Delete(int id)
-        {
-            new RepositoryDoctor().Delete(id);
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public ActionResult Update(int id)
-        {
-            Doctor doctor = new RepositoryDoctor().GetById(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Doctor doctor = db.Doctores.Find(id);
+            if (doctor == null)
+            {
+                return HttpNotFound();
+            }
             return View(doctor);
         }
-        [HttpPost]
-        public ActionResult Update(Doctor doctor)
+
+        // GET: Doctor/Create
+        public ActionResult Create()
         {
-            new RepositoryDoctor().Update(doctor);
+            return View();
+        }
+
+        // POST: Doctor/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Nombre,Email,TipoEspecialidad")] Doctor doctor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Doctores.Add(doctor);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(doctor);
+        }
+
+        // GET: Doctor/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Doctor doctor = db.Doctores.Find(id);
+            if (doctor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(doctor);
+        }
+
+        // POST: Doctor/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Email,TipoEspecialidad")] Doctor doctor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(doctor).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(doctor);
+        }
+
+        // GET: Doctor/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Doctor doctor = db.Doctores.Find(id);
+            if (doctor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(doctor);
+        }
+
+        // POST: Doctor/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Doctor doctor = db.Doctores.Find(id);
+            db.Doctores.Remove(doctor);
+            db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

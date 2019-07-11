@@ -9,14 +9,35 @@ using Vet.Services;
 
 namespace Vet.Domain
 {
-    public abstract class Factura : IEntity
+    public abstract partial class Factura : IEntity
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public int IdCliente { get; set; }
         public double Monto { get; set; }
 
+      
+
     }
 
-   
+    [MetadataType(typeof(FacturaMetadata))]
+
+    public abstract partial class Factura
+    {
+        public class FacturaMetadata
+        {
+            [Key]
+            [Column(Order = 1)]
+            public int Id { get; set; }
+            [ForeignKey("Cliente")]
+            [Column(Order = 2)]
+            [Required]
+            public int IdCliente { get; set; }
+            [Required]
+            public DateTime Fecha { get; set; }
+            [Required]
+            public double Monto { get; set; }
+        }
+    }
+
 }

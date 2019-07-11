@@ -11,12 +11,12 @@ namespace Vet.Domain
    public partial class FacturaProducto : Factura
     {
 
-
+        public Cliente Cliente { get; set; }
     }
 
     [MetadataType(typeof(FacturaProductoMetadata))]
 
-    public partial class FacturaProducto
+    public partial class FacturaProducto : Factura
     {
         public class FacturaProductoMetadata
         {

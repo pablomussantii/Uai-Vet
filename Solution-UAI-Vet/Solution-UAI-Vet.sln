@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vet.Domain", "Vet.Domain\Ve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vet.Services", "Vet.Services\Vet.Services.csproj", "{B194C767-A33F-41CB-93F7-0CB6503A4297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vet.Webside", "Vet.Webside\Vet.Webside.csproj", "{5B99690B-E576-4A4F-ACEB-0212C6C5F6C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vet.Websde", "Vet.Websde\Vet.Websde.csproj", "{90137E21-3B61-47A9-9E86-61DBD194A172}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{B194C767-A33F-41CB-93F7-0CB6503A4297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B194C767-A33F-41CB-93F7-0CB6503A4297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B194C767-A33F-41CB-93F7-0CB6503A4297}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B99690B-E576-4A4F-ACEB-0212C6C5F6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B99690B-E576-4A4F-ACEB-0212C6C5F6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B99690B-E576-4A4F-ACEB-0212C6C5F6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B99690B-E576-4A4F-ACEB-0212C6C5F6C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90137E21-3B61-47A9-9E86-61DBD194A172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90137E21-3B61-47A9-9E86-61DBD194A172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90137E21-3B61-47A9-9E86-61DBD194A172}.Release|Any CPU.ActiveCfg = Release|Any CPU

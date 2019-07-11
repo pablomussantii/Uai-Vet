@@ -45,17 +45,17 @@ namespace Vet.Data
             Paciente editpaciente = context.Pacientes.Find(entity.Id);
             if (entity != null)
             {
-                editpaciente.Nombre = entity.Nombre;
-                editpaciente.ClientId = entity.ClientId;
-                editpaciente.Genero = entity.Genero;
-                editpaciente.Dueño.Id = entity.Dueño.Id;
-                editpaciente.Dueño.NombreCompleto = entity.Dueño.NombreCompleto;
-                editpaciente.Dueño.Email = entity.Dueño.Email;
-                editpaciente.Dueño.Pacientes.Clear();
-                foreach (var item in entity.Dueño.Pacientes)
-                {
-                    editpaciente.Dueño.Pacientes.Add(item);
-                }
+                //editpaciente.Nombre = entity.Nombre;
+                //editpaciente.ClientId = entity.ClientId;
+                //editpaciente.Genero = entity.Genero;
+                //editpaciente.Dueño.Id = entity.Dueño.Id;
+                //editpaciente.Dueño.NombreCompleto = entity.Dueño.NombreCompleto;
+                //editpaciente.Dueño.Email = entity.Dueño.Email;
+                //editpaciente.Dueño.Pacientes.Clear();
+                //foreach (var item in entity.Dueño.Pacientes)
+                //{
+                //    editpaciente.Dueño.Pacientes.Add(item);
+                //}
             }
             context.SaveChanges();
         }

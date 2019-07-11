@@ -11,12 +11,14 @@ namespace Vet.Domain
     public partial class FacturaServicio : Factura
     {
         public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
+
+        public Cliente Cliente { get; set; }
     }
 
 
     [MetadataType(typeof(FacturaServicioMetadata))]
 
-    public partial class FacturaServicio
+    public partial class FacturaServicio : Factura
     {
         public class FacturaServicioMetadata
         {

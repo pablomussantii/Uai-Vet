@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Vet.Services;
 using Vet.Domain.SharedKernel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vet.Domain
 {
@@ -16,7 +17,7 @@ namespace Vet.Domain
 
         }
         public int Id { get; set; }
-        public Cliente Dueño { get; private set; }
+        public Cliente Cliente { get; private set; }
         public int ClientId { get; set; }
         public Genero Genero { get; set; }
         public string Nombre { get; set; }
@@ -28,12 +29,18 @@ namespace Vet.Domain
         public class PacienteMetadata
         {
             [Key]
+            [Column(Order = 1)]
             public int Id { get; set; }
+            [ForeignKey("Cliente")]
+            [Column(Order = 2)]
+            [Required]
+            public int ClientId { get; set; }
             [StringLength(50)]
             [Required]
             public string Nombre { get; set; }
             [Required]
             public Genero Genero { get; set; }
+
         }
     }
 }
