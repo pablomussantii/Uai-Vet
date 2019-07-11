@@ -19,6 +19,8 @@ namespace Vet.Domain
 
         public Paciente Paciente { get; set; }
 
+
+        public DateTime Fecha { get; set; }
     }
 
     [MetadataType(typeof(HistorialPacienteMetadata))]
@@ -36,7 +38,8 @@ namespace Vet.Domain
             public int IdPaciente { get; set; }
             [Required]
             public string Descripcion { get; set; }
-
+            [Required]
+            public DateTime Fecha { get; set; }
         }
     }
 }

@@ -53,6 +53,11 @@ namespace Vet.Websde.Controllers
         {
             if (ModelState.IsValid)
             {
+                RepositoryDetalleFacturaProducto repositorydetallefacturaproducto = new RepositoryDetalleFacturaProducto();
+                RepositoryFacturaProducto repositoryfacturaproducto = new RepositoryFacturaProducto();
+
+
+
                 db.FacturaProductos.Add(facturaProducto);
                 db.SaveChanges();
                 return RedirectToAction("Index");

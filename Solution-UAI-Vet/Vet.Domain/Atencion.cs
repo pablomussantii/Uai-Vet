@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vet.Services;
+using Vet.Domain.SharedKernel;
 
 namespace Vet.Domain
 {
@@ -16,21 +17,10 @@ namespace Vet.Domain
         public int IdSala { get; set; }
         public Doctor Doctor { get; set; }
         public Sala Sala { get; set; }
-        public SharedKernel.TipoEspecialidad TipoEspecialidad
-        {
-            get
-            {
-                return TipoEspecialidad;
-            }
-   
-            set
-            {
-                TipoEspecialidad = Doctor.TipoEspecialidad;
-            }
-            
-        }
+        public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
+
         public SharedKernel.HorarioTurno HorarioTurno { get; set; }
-      
+        public Dia Dia { get; set; }
     }
 
 
@@ -55,6 +45,8 @@ namespace Vet.Domain
             public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
             [Required]
             public SharedKernel.HorarioTurno HorarioTurno { get; set; }
+            [Required]
+            public Dia Dia { get; set; }
         }
     }
 }

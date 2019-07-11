@@ -47,12 +47,12 @@ namespace Vet.Data
             Turno edit = context.Turnos.Find(entity.Id);
             if (entity != null)
             {
-                edit.Abonado = entity.Abonado;
-                edit.Fecha = entity.Fecha;
-                edit.TipoEspecialidad = entity.TipoEspecialidad;
-                edit.Hora = entity.Hora;
-                edit.IdPaciente = entity.IdPaciente;
-                edit.IdSala = entity.IdSala;
+                //edit.Abonado = entity.Abonado;
+                //edit.Fecha = entity.Fecha;
+                //edit.TipoEspecialidad = entity.TipoEspecialidad;
+                //edit.Hora = entity.Hora;
+                //edit.IdPaciente = entity.IdPaciente;
+                //edit.IdSala = entity.IdSala;
 
             }
             context.SaveChanges();

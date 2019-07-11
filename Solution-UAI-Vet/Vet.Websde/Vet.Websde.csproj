@@ -98,9 +98,13 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -110,14 +114,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AtencionController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\DetalleFacturaProductoController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\FacturaProductoController.cs" />
     <Compile Include="Controllers\FacturaServicioController.cs" />
-    <Compile Include="Controllers\HistorialPacientesController.cs" />
+    <Compile Include="Controllers\HistorialPacienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\SalaController.cs" />
+    <Compile Include="Controllers\TurnoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -127,7 +135,6 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Doctor\Create.cshtml" />
     <Content Include="Views\Doctor\Delete.cshtml" />
     <Content Include="Views\Doctor\Details.cshtml" />
@@ -138,11 +145,6 @@
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
-    <Content Include="Views\HistorialPacientes\Create.cshtml" />
-    <Content Include="Views\HistorialPacientes\Delete.cshtml" />
-    <Content Include="Views\HistorialPacientes\Details.cshtml" />
-    <Content Include="Views\HistorialPacientes\Edit.cshtml" />
-    <Content Include="Views\HistorialPacientes\Index.cshtml" />
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Producto\Delete.cshtml" />
     <Content Include="Views\Producto\Details.cshtml" />
@@ -164,6 +166,31 @@
     <Content Include="Views\FacturaServicio\Details.cshtml" />
     <Content Include="Views\FacturaServicio\Edit.cshtml" />
     <Content Include="Views\FacturaServicio\Index.cshtml" />
+    <Content Include="Views\Atencion\Create.cshtml" />
+    <Content Include="Views\Atencion\Delete.cshtml" />
+    <Content Include="Views\Atencion\Details.cshtml" />
+    <Content Include="Views\Atencion\Edit.cshtml" />
+    <Content Include="Views\Atencion\Index.cshtml" />
+    <Content Include="Views\DetalleFacturaProducto\Create.cshtml" />
+    <Content Include="Views\DetalleFacturaProducto\Delete.cshtml" />
+    <Content Include="Views\DetalleFacturaProducto\Details.cshtml" />
+    <Content Include="Views\DetalleFacturaProducto\Edit.cshtml" />
+    <Content Include="Views\DetalleFacturaProducto\Index.cshtml" />
+    <Content Include="Views\Sala\Create.cshtml" />
+    <Content Include="Views\Sala\Delete.cshtml" />
+    <Content Include="Views\Sala\Details.cshtml" />
+    <Content Include="Views\Sala\Edit.cshtml" />
+    <Content Include="Views\Sala\Index.cshtml" />
+    <Content Include="Views\Turno\Create.cshtml" />
+    <Content Include="Views\Turno\Delete.cshtml" />
+    <Content Include="Views\Turno\Details.cshtml" />
+    <Content Include="Views\Turno\Edit.cshtml" />
+    <Content Include="Views\Turno\Index.cshtml" />
+    <Content Include="Views\HistorialPaciente\Create.cshtml" />
+    <Content Include="Views\HistorialPaciente\Delete.cshtml" />
+    <Content Include="Views\HistorialPaciente\Details.cshtml" />
+    <Content Include="Views\HistorialPaciente\Edit.cshtml" />
+    <Content Include="Views\HistorialPaciente\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

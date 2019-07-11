@@ -15,12 +15,12 @@ namespace Vet.Domain
         public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
         public DateTime Fecha { get; set; }
         public int IdPaciente { get; set; }
-        public int IdSala { get; set; }
+        public int IdAtencion { get; set; }
         public int Hora { get; set; }
         public Boolean Abonado { get; set; }
 
         public Paciente Paciente { get; set; }
-        public Sala Sala { get; set; }
+        public Atencion Atencion { get; set; }
     }
 
     [MetadataType(typeof(TurnoMetadata))]
@@ -36,10 +36,10 @@ namespace Vet.Domain
             [Column(Order = 2)]
             [Required]
             public int IdPaciente { get; set; }
-            [ForeignKey("Sala")]
+            [ForeignKey("Atencion")]
             [Column(Order = 3)]
             [Required]
-            public int IdSala { get; set; }
+            public int IdAtencion { get; set; }
             [Required]
             public DateTime Fecha { get; set; }
             [Required]

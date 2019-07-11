@@ -1,0 +1,67 @@
+﻿@model Vet.Domain.Turno
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <h4>Turno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Atencion.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atencion.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEspecialidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEspecialidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abonado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abonado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

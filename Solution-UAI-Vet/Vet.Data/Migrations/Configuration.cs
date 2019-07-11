@@ -9,7 +9,7 @@ namespace Vet.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Vet.Data.VetDbContext context)
