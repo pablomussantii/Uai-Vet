@@ -54,6 +54,7 @@ namespace Vet.Websde.Controllers
         {
             if (ModelState.IsValid)
             {
+                facturaProducto.Fecha = DateTime.Now;
                 RepositoryProducto repositoryProducto = new RepositoryProducto();
                 Producto prod = new Producto();
                 prod = repositoryProducto.GetById(facturaProducto.IdProducto);

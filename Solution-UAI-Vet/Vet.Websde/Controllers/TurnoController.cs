@@ -15,6 +15,7 @@ namespace Vet.Websde.Controllers
     {
         private VetDbContext db = new VetDbContext();
 
+
         // GET: Turno
         public ActionResult Index()
         {
@@ -29,11 +30,13 @@ namespace Vet.Websde.Controllers
 
             foreach (var item in tur)
             {
-
+           
             }
 
             return View(tur);
         }
+
+     
 
         // GET: Turno/Details/5
         public ActionResult Details(int? id)
@@ -55,7 +58,7 @@ namespace Vet.Websde.Controllers
         {
             RepositoryAtencion repositoryatencion = new RepositoryAtencion();
            ViewBag.atenciones= repositoryatencion.List();
-            ViewBag.IdAtencion = new SelectList(db.Atenciones, "Id", "Id");
+            //ViewBag.IdAtencion = new SelectList(db.Atenciones, "Id", "Id");
             ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre");
             return View();
         }
@@ -84,7 +87,16 @@ namespace Vet.Websde.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
+                    int valor2 = 0;
+                    if (turno.Hora >= 25 || turno.Hora <= -1)
+                    {
+                        ViewBag.advertencia3 = "La hora ingresada no es valida";
+                        valor2 = 1;
+                    }
+                    else
+                    {
+                        valor2 = 0;
+                    }
                     RepositoryAtencion repositoryatencion = new RepositoryAtencion();
                     
                     RepositoryTurno repositoryTurno = new RepositoryTurno();
@@ -108,7 +120,7 @@ namespace Vet.Websde.Controllers
                         //}
 
                     }
-                    if (valor == 1)
+                    if (valor == 1 || valor2 == 1)
                     {
 
                     }
@@ -198,5 +210,56 @@ namespace Vet.Websde.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //[HttpGet]
+        //public ActionResult Reserva(DateTime Fecha)
+        //{
+
+        //    RepositoryTurno turnos = new RepositoryTurno();
+        //    List<Turno> lstturno = new List<Turno>();
+        //    foreach (var item in turnos.List())
+        //    {
+        //        if (item.Fecha.ToString("dd/MM/yy")== ViewBag.Fecha.ToString("dd/MM/yy"))
+        //        {
+        //            lstturno.Add(item);
+        //        }
+        //    }
+          
+        //    IEnumerable<Turno> lstordenada = lstturno.OrderBy(Turno => Turno.Hora);
+
+        //    return View(lstordenada);
+        //}
+
+        [HttpGet]
+
+        public ActionResult CReserva()
+        {
+            var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
+          
+            return View(turnos);
+        }
+
+
+        [HttpPost]
+        public ActionResult CReserva(DateTime Fecha)
+        {
+
+            List<Turno> lstturno = new List<Turno>();
+            var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
+            foreach (var item in turnos)
+            {
+                if (item.Fecha.ToString("dd/MM/yy") == Fecha.ToString("dd/MM/yy"))
+                {
+                    lstturno.Add(item);
+                }
+            }
+
+            IEnumerable<Turno> lstordenada = lstturno.OrderBy(Turno => Turno.Hora);
+
+            return View(lstordenada);
+
+        }
+
+
     }
 }

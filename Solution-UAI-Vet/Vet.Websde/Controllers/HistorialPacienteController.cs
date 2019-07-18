@@ -53,6 +53,7 @@ namespace Vet.Websde.Controllers
         {
             if (ModelState.IsValid)
             {
+                historialPaciente.Fecha = DateTime.Now;
                 db.HistorialPacientes.Add(historialPaciente);
                 db.SaveChanges();
                 return RedirectToAction("Index");

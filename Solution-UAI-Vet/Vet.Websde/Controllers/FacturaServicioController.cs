@@ -62,6 +62,7 @@ namespace Vet.Websde.Controllers
         {
             if (ModelState.IsValid)
             {
+                facturaServicio.Fecha = DateTime.Now;
                 RepositoryTurno repositoryturno = new RepositoryTurno();
                 Turno modelturno = new Turno();
                 modelturno = repositoryturno.GetById(facturaServicio.IdTurno);

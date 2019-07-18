@@ -12,7 +12,7 @@ namespace Vet.Data
 {
     public class VetDbContext : DbContext
     {
-        public VetDbContext() : base("Data Source=DESKTOP-0LE6IUG;Initial Catalog=bd4;Integrated Security=True")
+        public VetDbContext() : base("VetConnection")
         {
 
         }

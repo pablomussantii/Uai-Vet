@@ -29,14 +29,14 @@ h1 {
 }
 
 nav {
-    width: 10%;
+    width: 15%;
     text-align: left;
     margin-top: 10px;
 }
 
 section {
     float: right;
-    width: 90%;
+    width: 85%;
     text-align: left;
     /*margin-left: 15px;*/
     margin-top: 10px;

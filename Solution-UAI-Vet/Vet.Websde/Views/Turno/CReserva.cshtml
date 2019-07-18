@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Vet.Domain.Turno>
+
+@{
+    ViewBag.Title = "CReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+Si se desea consultar turnos por favor ingrese la fecha:
+
+<form method="post" action="/Turno/CReserva">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <label> Fecha: </label>
+    <input type="date" name="Fecha" id="Fecha" /> <br />
+    <input type="submit" name="enviar" value="enviar" />
+
+
+</form>
+
+<table class="table" border="1">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora)
+            </td>
+        </tr>
+    }
+</table>
