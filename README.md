@@ -3,4 +3,6 @@
 - Agregar Aside con publicidad (solo en la landing page)
 - Enriquecer atributos del modelo
 - Permitir cargar imagen de una mascota
+- Implementar log4net
 - Fecha de entrega: 8/8/19
+
