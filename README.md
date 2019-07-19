@@ -4,6 +4,6 @@
 - Enriquecer atributos del modelo
 - Permitir cargar imagen de una mascota
 - Implementar log4net
-- Scheduler Template (no obligatorio)
+- Implementar Scheduler Template (no obligatorio)
 - Fecha de entrega: 8/8/19
 
