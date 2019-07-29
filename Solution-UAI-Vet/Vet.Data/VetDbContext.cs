@@ -25,7 +25,7 @@ namespace Vet.Data
         public DbSet<FacturaServicio> FacturaServicios { get; set; }
         public DbSet<HistorialPaciente> HistorialPacientes { get; set; }
         public DbSet<Producto> Productos { get; set; }
-        //public DbSet<DetalleFacturaProducto> DetalleFacturaProductos { get; set; }
+        //public DbSet<DetalleFacturaProducto> DetalleFacturaProductos { get; set; } 
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Sala> Salas { get; set; }
 

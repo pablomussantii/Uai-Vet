@@ -18,9 +18,9 @@ namespace Vet.Domain
         public int IdAtencion { get; set; }
         public int Hora { get; set; }
         public Boolean Abonado { get; set; }
-
         public Paciente Paciente { get; set; }
         public Atencion Atencion { get; set; }
+        public Boolean Cancelado { get; set; }
 
 
 
@@ -122,6 +122,8 @@ namespace Vet.Domain
             public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
             [Required]
             public Boolean Abonado { get; set; }
+            [Required]
+            public Boolean Cancelado { get; set; }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Vet.Websde.Controllers
         public ActionResult Index()
         {
             RepositoryDoctor repositoryDoctor = new RepositoryDoctor();
+            RepositoryAtencion repositoryatencion = new RepositoryAtencion();
 
             var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
 
@@ -28,8 +29,23 @@ namespace Vet.Websde.Controllers
 
             IEnumerable<Turno> lstordenada = tur.OrderBy(User => User.Fecha);
 
-            foreach (var item in tur)
+            foreach (var item in lstordenada)
             {
+                foreach (var item2 in repositoryatencion.List())
+                {
+                    if (item.IdAtencion == item2.Id)
+                    {
+                        item.Atencion = item2;
+
+                        foreach (var item3 in repositoryDoctor.List())
+                        {
+                            if (item.Atencion.IdDoctor == item3.Id)
+                            {
+                                item.Atencion.Doctor = item3;
+                            }
+                        }
+                    }
+                }
            
             }
 
@@ -258,7 +274,9 @@ namespace Vet.Websde.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Turno turno = db.Turnos.Find(id);
-            db.Turnos.Remove(turno);
+            turno.Cancelado = true;
+            db.Entry(turno).State = EntityState.Modified;
+            //db.Turnos.Remove(turno);
             db.SaveChanges();
             log.Info("Eliminacion de turno");
             return RedirectToAction("Index");
@@ -312,7 +330,15 @@ namespace Vet.Websde.Controllers
             {
                 if (item.Fecha.ToString("dd/MM/yy") == Fecha.ToString("dd/MM/yy"))
                 {
-                    lstturno.Add(item);
+                    if (item.Cancelado == true)
+                    {
+
+                    }
+                    else
+                    {
+                        lstturno.Add(item);
+                    }
+                   
                 }
             }
 

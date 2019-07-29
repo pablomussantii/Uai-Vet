@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,6 +16,18 @@ namespace Vet.Websde.Controllers
     {
         private VetDbContext db = new VetDbContext();
         log4net.ILog log = log4net.LogManager.GetLogger(typeof(PacienteController));
+
+
+
+
+        public ActionResult Convertirimagen(int codigomascota)
+        {
+            var imagenmascota = db.Pacientes.Where(x => x.Id == codigomascota).FirstOrDefault();
+            return File(imagenmascota.ImagenMascota, "image/jpeg");
+        }
+
+
+
 
         // GET: Paciente
         public ActionResult Index()
@@ -50,8 +63,18 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ClientId,Genero,Nombre")] Paciente paciente)
+        public ActionResult Create([Bind(Include = "Id,ClientId,Genero,Nombre,Raza,TipodeSangre")] Paciente paciente, HttpPostedFileBase ImagenMascota)
         {
+            if (ImagenMascota != null && ImagenMascota.ContentLength > 0)
+            {
+                byte[] imagendata = null;
+                using (var binarypaciente = new BinaryReader(ImagenMascota.InputStream))
+                {
+                    imagendata = binarypaciente.ReadBytes(ImagenMascota.ContentLength);
+
+                }
+                paciente.ImagenMascota = imagendata;
+            }
             if (ModelState.IsValid)
             {
                 db.Pacientes.Add(paciente);
@@ -85,8 +108,18 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ClientId,Genero,Nombre")] Paciente paciente)
+        public ActionResult Edit([Bind(Include = "Id,ClientId,Genero,Nombre,Raza,TipodeSangre")] Paciente paciente, HttpPostedFileBase ImagenMascota)
         {
+            if (ImagenMascota != null && ImagenMascota.ContentLength > 0)
+            {
+                byte[] imagendata = null;
+                using (var binarypaciente = new BinaryReader(ImagenMascota.InputStream))
+                {
+                    imagendata = binarypaciente.ReadBytes(ImagenMascota.ContentLength);
+
+                }
+                paciente.ImagenMascota = imagendata;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(paciente).State = EntityState.Modified;

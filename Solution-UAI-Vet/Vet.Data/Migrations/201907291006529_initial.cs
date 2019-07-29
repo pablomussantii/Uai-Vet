@@ -8,7 +8,7 @@ namespace Vet.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Atencions",
+                "dbo.Atencion",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -19,24 +19,26 @@ namespace Vet.Data.Migrations
                         Dia = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Doctors", t => t.IdDoctor, cascadeDelete: true)
-                .ForeignKey("dbo.Salas", t => t.IdSala, cascadeDelete: true)
+                .ForeignKey("dbo.Doctor", t => t.IdDoctor, cascadeDelete: true)
+                .ForeignKey("dbo.Sala", t => t.IdSala, cascadeDelete: true)
                 .Index(t => t.IdDoctor)
                 .Index(t => t.IdSala);
             
             CreateTable(
-                "dbo.Doctors",
+                "dbo.Doctor",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 50),
                         Email = c.String(nullable: false, maxLength: 50),
                         TipoEspecialidad = c.Int(nullable: false),
+                        Telefono = c.Int(nullable: false),
+                        Direccion = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Salas",
+                "dbo.Sala",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -46,30 +48,36 @@ namespace Vet.Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Clientes",
+                "dbo.Cliente",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         NombreCompleto = c.String(nullable: false, maxLength: 50),
                         Email = c.String(nullable: false, maxLength: 50),
+                        Dni = c.Int(nullable: false),
+                        Telefono = c.Int(nullable: false),
+                        Direccion = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Pacientes",
+                "dbo.Paciente",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ClientId = c.Int(nullable: false),
                         Genero = c.Int(nullable: false),
                         Nombre = c.String(nullable: false, maxLength: 50),
+                        ImagenMascota = c.Binary(),
+                        Raza = c.String(nullable: false),
+                        TipodeSangre = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Clientes", t => t.ClientId, cascadeDelete: true)
+                .ForeignKey("dbo.Cliente", t => t.ClientId, cascadeDelete: true)
                 .Index(t => t.ClientId);
             
             CreateTable(
-                "dbo.FacturaProductoes",
+                "dbo.FacturaProducto",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -80,13 +88,13 @@ namespace Vet.Data.Migrations
                         Monto = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Clientes", t => t.IdCliente, cascadeDelete: true)
-                .ForeignKey("dbo.Productoes", t => t.IdProducto, cascadeDelete: true)
+                .ForeignKey("dbo.Cliente", t => t.IdCliente, cascadeDelete: true)
+                .ForeignKey("dbo.Producto", t => t.IdProducto, cascadeDelete: true)
                 .Index(t => t.IdCliente)
                 .Index(t => t.IdProducto);
             
             CreateTable(
-                "dbo.Productoes",
+                "dbo.Producto",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -96,7 +104,7 @@ namespace Vet.Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.FacturaServicios",
+                "dbo.FacturaServicio",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -105,11 +113,11 @@ namespace Vet.Data.Migrations
                         Monto = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Turnoes", t => t.IdTurno, cascadeDelete: true)
+                .ForeignKey("dbo.Turno", t => t.IdTurno, cascadeDelete: true)
                 .Index(t => t.IdTurno);
             
             CreateTable(
-                "dbo.Turnoes",
+                "dbo.Turno",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -119,15 +127,16 @@ namespace Vet.Data.Migrations
                         Fecha = c.DateTime(nullable: false),
                         Hora = c.Int(nullable: false),
                         Abonado = c.Boolean(nullable: false),
+                        Cancelado = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Atencions", t => t.IdAtencion, cascadeDelete: true)
-                .ForeignKey("dbo.Pacientes", t => t.IdPaciente, cascadeDelete: true)
+                .ForeignKey("dbo.Atencion", t => t.IdAtencion, cascadeDelete: true)
+                .ForeignKey("dbo.Paciente", t => t.IdPaciente, cascadeDelete: true)
                 .Index(t => t.IdPaciente)
                 .Index(t => t.IdAtencion);
             
             CreateTable(
-                "dbo.HistorialPacientes",
+                "dbo.HistorialPaciente",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -136,41 +145,41 @@ namespace Vet.Data.Migrations
                         Fecha = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Pacientes", t => t.IdPaciente, cascadeDelete: true)
+                .ForeignKey("dbo.Paciente", t => t.IdPaciente, cascadeDelete: true)
                 .Index(t => t.IdPaciente);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.HistorialPacientes", "IdPaciente", "dbo.Pacientes");
-            DropForeignKey("dbo.FacturaServicios", "IdTurno", "dbo.Turnoes");
-            DropForeignKey("dbo.Turnoes", "IdPaciente", "dbo.Pacientes");
-            DropForeignKey("dbo.Turnoes", "IdAtencion", "dbo.Atencions");
-            DropForeignKey("dbo.FacturaProductoes", "IdProducto", "dbo.Productoes");
-            DropForeignKey("dbo.FacturaProductoes", "IdCliente", "dbo.Clientes");
-            DropForeignKey("dbo.Pacientes", "ClientId", "dbo.Clientes");
-            DropForeignKey("dbo.Atencions", "IdSala", "dbo.Salas");
-            DropForeignKey("dbo.Atencions", "IdDoctor", "dbo.Doctors");
-            DropIndex("dbo.HistorialPacientes", new[] { "IdPaciente" });
-            DropIndex("dbo.Turnoes", new[] { "IdAtencion" });
-            DropIndex("dbo.Turnoes", new[] { "IdPaciente" });
-            DropIndex("dbo.FacturaServicios", new[] { "IdTurno" });
-            DropIndex("dbo.FacturaProductoes", new[] { "IdProducto" });
-            DropIndex("dbo.FacturaProductoes", new[] { "IdCliente" });
-            DropIndex("dbo.Pacientes", new[] { "ClientId" });
-            DropIndex("dbo.Atencions", new[] { "IdSala" });
-            DropIndex("dbo.Atencions", new[] { "IdDoctor" });
-            DropTable("dbo.HistorialPacientes");
-            DropTable("dbo.Turnoes");
-            DropTable("dbo.FacturaServicios");
-            DropTable("dbo.Productoes");
-            DropTable("dbo.FacturaProductoes");
-            DropTable("dbo.Pacientes");
-            DropTable("dbo.Clientes");
-            DropTable("dbo.Salas");
-            DropTable("dbo.Doctors");
-            DropTable("dbo.Atencions");
+            DropForeignKey("dbo.HistorialPaciente", "IdPaciente", "dbo.Paciente");
+            DropForeignKey("dbo.FacturaServicio", "IdTurno", "dbo.Turno");
+            DropForeignKey("dbo.Turno", "IdPaciente", "dbo.Paciente");
+            DropForeignKey("dbo.Turno", "IdAtencion", "dbo.Atencion");
+            DropForeignKey("dbo.FacturaProducto", "IdProducto", "dbo.Producto");
+            DropForeignKey("dbo.FacturaProducto", "IdCliente", "dbo.Cliente");
+            DropForeignKey("dbo.Paciente", "ClientId", "dbo.Cliente");
+            DropForeignKey("dbo.Atencion", "IdSala", "dbo.Sala");
+            DropForeignKey("dbo.Atencion", "IdDoctor", "dbo.Doctor");
+            DropIndex("dbo.HistorialPaciente", new[] { "IdPaciente" });
+            DropIndex("dbo.Turno", new[] { "IdAtencion" });
+            DropIndex("dbo.Turno", new[] { "IdPaciente" });
+            DropIndex("dbo.FacturaServicio", new[] { "IdTurno" });
+            DropIndex("dbo.FacturaProducto", new[] { "IdProducto" });
+            DropIndex("dbo.FacturaProducto", new[] { "IdCliente" });
+            DropIndex("dbo.Paciente", new[] { "ClientId" });
+            DropIndex("dbo.Atencion", new[] { "IdSala" });
+            DropIndex("dbo.Atencion", new[] { "IdDoctor" });
+            DropTable("dbo.HistorialPaciente");
+            DropTable("dbo.Turno");
+            DropTable("dbo.FacturaServicio");
+            DropTable("dbo.Producto");
+            DropTable("dbo.FacturaProducto");
+            DropTable("dbo.Paciente");
+            DropTable("dbo.Cliente");
+            DropTable("dbo.Sala");
+            DropTable("dbo.Doctor");
+            DropTable("dbo.Atencion");
         }
     }
 }

@@ -15,7 +15,8 @@ namespace Vet.Domain
         public string Nombre { get; set; }
         public string Email { get; set; }
         public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
-        
+        public int Telefono { get; set; }
+        public string Direccion { get; set; }
     }
 
     [MetadataType(typeof(DoctorMetadata))]
@@ -33,6 +34,10 @@ namespace Vet.Domain
             public string Email { get; set; }
             [Required]
             public SharedKernel.TipoEspecialidad TipoEspecialidad { get; set; }
+            [Required]
+            public int Telefono { get; set; }
+            [Required]
+            public string Direccion { get; set; }
         }
     }
 }

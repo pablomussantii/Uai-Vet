@@ -48,7 +48,7 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Email,TipoEspecialidad")] Doctor doctor)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Email,TipoEspecialidad,Telefono,Direccion")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace Vet.Websde.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Email,TipoEspecialidad")] Doctor doctor)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Email,TipoEspecialidad,Telefono,Direccion")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {

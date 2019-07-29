@@ -18,6 +18,9 @@ namespace Vet.Domain
         public int Id { get; set; }
         public string NombreCompleto { get; set; }
         public string Email { get; set; }
+        public int Dni { get; set; }
+        public int Telefono { get; set; }
+        public string Direccion { get; set; }
         public IList<Paciente> Pacientes { get; private set; }
     }
 
@@ -36,6 +39,12 @@ namespace Vet.Domain
             [StringLength(50)]
             [Required]
             public string Email { get; set; }
+            [Required]
+            public int Dni { get; set; }
+            [Required]
+            public int Telefono { get; set; }
+            [Required]
+            public string Direccion { get; set; }
 
         }
     }

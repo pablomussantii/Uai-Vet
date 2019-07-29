@@ -21,6 +21,14 @@ namespace Vet.Domain
         public int ClientId { get; set; }
         public Genero Genero { get; set; }
         public string Nombre { get; set; }
+
+
+        public byte[] ImagenMascota { get; set; }
+
+        public string Raza { get; set; }
+
+        public string TipodeSangre { get; set; }
+
     }
 
     [MetadataType(typeof(PacienteMetadata))]
@@ -40,7 +48,12 @@ namespace Vet.Domain
             public string Nombre { get; set; }
             [Required]
             public Genero Genero { get; set; }
-
+            
+            public byte[] ImagenMascota { get; set; }
+            [Required]
+            public string Raza { get; set; }
+            [Required]
+            public string TipodeSangre { get; set; }
         }
     }
 }

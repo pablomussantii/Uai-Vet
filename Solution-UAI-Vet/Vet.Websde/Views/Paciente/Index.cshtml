@@ -20,6 +20,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenMascota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Raza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipodeSangre)
+        </th>
         <th></th>
     </tr>
 
@@ -34,10 +43,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <img width="50" height="50" src="@Url.Action("ConvertirImagen", "Paciente", new { ImagenMascota = item.ImagenMascota })"
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Raza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipodeSangre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

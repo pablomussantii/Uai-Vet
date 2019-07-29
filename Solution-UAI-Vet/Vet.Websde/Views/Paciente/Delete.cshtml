@@ -36,6 +36,30 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenMascota)
+        </dt>
+
+        <dd>
+            <img width="50" height="50" src="@Url.Action("ConvertirImagen", "Paciente", new { ImagenMascota = Model.ImagenMascota })"
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipodeSangre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipodeSangre)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

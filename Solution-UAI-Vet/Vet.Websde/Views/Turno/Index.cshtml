@@ -13,10 +13,10 @@
 <table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Atencion.Id)
+            @Html.Label("Nombre del Doctor", new { @class = "control-label col-md-2" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Paciente.Nombre)
+            @Html.Label("Nombre del Paciente", new { @class = "control-label col-md-2" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TipoEspecialidad)
@@ -30,36 +30,42 @@
         <th>
             @Html.DisplayNameFor(model => model.Abonado)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cancelado)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Atencion.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoEspecialidad)
-            </td>
-            <td>
-                @Html.Raw(item.Fecha.ToShortDateString())
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abonado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atencion.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoEspecialidad)
+        </td>
+        <td>
+            @Html.Raw(item.Fecha.ToShortDateString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cancelado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
     }
 </table>
 
