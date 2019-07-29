@@ -14,6 +14,7 @@ namespace Vet.Websde.Controllers
     public class FacturaProductoController : Controller
     {
         private VetDbContext db = new VetDbContext();
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(FacturaProductoController));
 
         // GET: FacturaProducto
         public ActionResult Index()
@@ -61,6 +62,7 @@ namespace Vet.Websde.Controllers
                 facturaProducto.Monto = prod.Precio * facturaProducto.Cantidad;
                 db.FacturaProductos.Add(facturaProducto);
                 db.SaveChanges();
+                log.Info("Creacion de factura producto");
                 return RedirectToAction("Index");
             }
 
@@ -97,6 +99,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(facturaProducto).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de factura producto");
                 return RedirectToAction("Index");
             }
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "NombreCompleto", facturaProducto.IdCliente);
@@ -127,6 +130,7 @@ namespace Vet.Websde.Controllers
             FacturaProducto facturaProducto = db.FacturaProductos.Find(id);
             db.FacturaProductos.Remove(facturaProducto);
             db.SaveChanges();
+            log.Info("Eliminacion de factura producto");
             return RedirectToAction("Index");
         }
 

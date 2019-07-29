@@ -14,7 +14,7 @@ namespace Vet.Websde.Controllers
     public class TurnoController : Controller
     {
         private VetDbContext db = new VetDbContext();
-
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(TurnoController));
 
         // GET: Turno
         public ActionResult Index()
@@ -70,57 +70,116 @@ namespace Vet.Websde.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TipoEspecialidad,Fecha,IdPaciente,IdAtencion,Hora,Abonado")] Turno turno)
         {
+            RepositoryAtencion repositoryatencion = new RepositoryAtencion();
+            RepositoryTurno repositoryTurno = new RepositoryTurno();
             List<Atencion> lstatencion = new List<Atencion>();
-            if (turno.IdAtencion == 0)
+
+            foreach (var item in repositoryatencion.List())
             {
-                RepositoryAtencion repositoryatencion = new RepositoryAtencion();
-               
-                foreach (var item in repositoryatencion.List())
+                if (item.TipoEspecialidad == turno.TipoEspecialidad)
                 {
-                    if (item.TipoEspecialidad == turno.TipoEspecialidad)
-                    {
-                        lstatencion.Add(item);
-                    }
+                    lstatencion.Add(item);
                 }
             }
-            else
-            {
+            ViewBag.IdAtencion = new SelectList(lstatencion, "Id", "Id", turno.IdAtencion);
                 if (ModelState.IsValid)
                 {
+
                     int valor2 = 0;
-                    if (turno.Hora >= 25 || turno.Hora <= -1)
-                    {
-                        ViewBag.advertencia3 = "La hora ingresada no es valida";
-                        valor2 = 1;
-                    }
-                    else
-                    {
-                        valor2 = 0;
-                    }
-                    RepositoryAtencion repositoryatencion = new RepositoryAtencion();
-                    
-                    RepositoryTurno repositoryTurno = new RepositoryTurno();
+
+                    valor2 = turno.validarhora(turno);
+
+
+
+                    //if (turno.Hora >= 25 || turno.Hora <= -1)
+                    //{
+                    //    ViewBag.advertencia3 = "La hora ingresada no es valida";
+                    //    valor2 = 1;
+                    //}
+                    //else
+                    //{
+                    //    valor2 = 0;
+                    //}
+
+
+
                     Atencion natencion = new Atencion();
                     natencion = repositoryatencion.GetById(turno.IdAtencion);
                     int valor = 0;
                     //ViewBag.advertencia2 = "No corresponde la atencion con lo que se solicita";
                     //int valor2 = 0;
-                    foreach (var item in repositoryTurno.List())
+
+
+                    valor = turno.verificarrepeticion(repositoryTurno, turno);
+                    
+                    //foreach (var item in repositoryTurno.List())
+                    //{
+                    //    if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
+                    //    {
+                    //        ViewBag.advertencia = "Ya hay alguien asignado en este horario";
+                    //        valor = 1;
+                    //    }
+                    
+                    //}
+
+                    int valor3 = 1;
+
+                    valor3 = turno.verificarcoordinacionconatencion(repositoryatencion, turno);
+
+                    //foreach (var item in repositoryatencion.List())
+                    //{
+                    //    if (item.Id == turno.IdAtencion)
+                    //    {
+                    //        turno.Atencion = item;
+                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Mañana)
+                    //        {
+                    //            if (turno.Hora >= 6 && turno.Hora <= 12)
+                    //            {
+                    //                valor3 = 0;
+                    //            }
+                    //        }
+
+                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Tarde)
+                    //        {
+                    //            if (turno.Hora >= 13 && turno.Hora <= 19)
+                    //            {
+                    //                valor3 = 0;
+                    //            }
+
+                    //        }
+
+                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Noche)
+                    //        {
+                    //            if (turno.Hora >= 20 && turno.Hora <= 23)
+                    //            {
+                    //                valor3 = 0;
+                    //            }
+                    //            if (turno.Hora >= 0 && turno.Hora <= 5)
+                    //            {
+                    //                valor3 = 0;
+                    //            }
+
+                    //        }
+                    //    } 
+
+                    //}
+
+                    if (valor3 == 1)
                     {
-                        if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
-                        {
-                            ViewBag.advertencia = "Ya hay alguien asignado en este horario";
-                            valor = 1;
-                        }
-
-                        //valor2 = Convert.ChangeType(natencion.HorarioTurno,natencion.HorarioTurno.GetTypeCode());
-                        //if (natencion.HorarioTurno.ToString == "Tarde")
-                        //{
-
-                        //}
-
+                        ViewBag.advertencia4 = string.Format("El doctor no se encuentra en este horario, esta en el horario de {0} .",turno.Atencion.HorarioTurno);
                     }
-                    if (valor == 1 || valor2 == 1)
+
+                    if (valor == 1)
+                    {
+                        ViewBag.advertencia = "Ya hay alguien asignado en este horario.";
+                    }
+
+                    if (valor2 == 1)
+                    {
+                        ViewBag.advertencia3 = "La hora ingresada no es valida.";
+                    }
+
+                    if (valor == 1 || valor2 == 1 || valor3 == 1)
                     {
 
                     }
@@ -128,15 +187,16 @@ namespace Vet.Websde.Controllers
                     {
                         db.Turnos.Add(turno);
                         db.SaveChanges();
+                    log.Info("Creacion de turno");
                         return RedirectToAction("Index");
                     }
 
+                
                 }
-            }
 
            
 
-            ViewBag.IdAtencion = new SelectList(lstatencion, "Id", "Id", turno.IdAtencion);
+           
             ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre", turno.IdPaciente);
             return View(turno);
         }
@@ -169,6 +229,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(turno).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de turno");
                 return RedirectToAction("Index");
             }
             ViewBag.IdAtencion = new SelectList(db.Atenciones, "Id", "Id", turno.IdAtencion);
@@ -199,6 +260,7 @@ namespace Vet.Websde.Controllers
             Turno turno = db.Turnos.Find(id);
             db.Turnos.Remove(turno);
             db.SaveChanges();
+            log.Info("Eliminacion de turno");
             return RedirectToAction("Index");
         }
 

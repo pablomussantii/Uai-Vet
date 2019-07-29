@@ -21,6 +21,19 @@ namespace Vet.Domain
 
         public SharedKernel.HorarioTurno HorarioTurno { get; set; }
         public Dia Dia { get; set; }
+
+
+        public int verificardisponibilidadsala(IRepository<Atencion> atenciones,Atencion atencion)
+        {
+            foreach (var x in atenciones.List())
+            {
+                if (x.Dia == atencion.Dia && x.HorarioTurno == atencion.HorarioTurno && x.IdSala == atencion.IdSala)
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
     }
 
 

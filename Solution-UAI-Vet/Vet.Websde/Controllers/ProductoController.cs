@@ -14,6 +14,7 @@ namespace Vet.Websde.Controllers
     public class ProductoController : Controller
     {
         private VetDbContext db = new VetDbContext();
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(ProductoController));
 
         // GET: Producto
         public ActionResult Index()
@@ -53,6 +54,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Productos.Add(producto);
                 db.SaveChanges();
+                log.Info("Creacion de producto");
                 return RedirectToAction("Index");
             }
 
@@ -85,6 +87,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de producto");
                 return RedirectToAction("Index");
             }
             return View(producto);
@@ -113,6 +116,7 @@ namespace Vet.Websde.Controllers
             Producto producto = db.Productos.Find(id);
             db.Productos.Remove(producto);
             db.SaveChanges();
+            log.Info("Eliminacion de producto");
             return RedirectToAction("Index");
         }
 

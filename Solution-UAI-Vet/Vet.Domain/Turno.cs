@@ -21,6 +21,80 @@ namespace Vet.Domain
 
         public Paciente Paciente { get; set; }
         public Atencion Atencion { get; set; }
+
+
+
+        public int validarhora(Turno turno)
+        {
+
+            if (turno.Hora >= 25 || turno.Hora <= -1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int verificarrepeticion(IRepository<Turno> turnos, Turno turno)
+        {
+            foreach (var item in turnos.List())
+            {
+                if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
+                {
+                    return 1;
+                }
+
+            }
+            return 0;
+
+        }
+
+        public int verificarcoordinacionconatencion(IRepository<Atencion> atenciones, Turno turno)
+        {
+
+            foreach (var item in atenciones.List())
+            {
+                if (item.Id == turno.IdAtencion)
+                {
+                    turno.Atencion = item;
+                    if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Mañana)
+                    {
+                        if (turno.Hora >= 6 && turno.Hora <= 12)
+                        {
+                            return 0;
+                        }
+                    }
+
+                    if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Tarde)
+                    {
+                        if (turno.Hora >= 13 && turno.Hora <= 19)
+                        {
+                            return 0;
+                        }
+
+                    }
+
+                    if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Noche)
+                    {
+                        if (turno.Hora >= 20 && turno.Hora <= 23)
+                        {
+                            return 0;
+                        }
+                        if (turno.Hora >= 0 && turno.Hora <= 5)
+                        {
+                            return 0;
+                        }
+
+                    }
+                }
+
+
+            }
+            return 1;
+
+        }
     }
 
     [MetadataType(typeof(TurnoMetadata))]

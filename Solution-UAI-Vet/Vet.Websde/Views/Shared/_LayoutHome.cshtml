@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title  Veterinaria</title>
+    <link href="~/Content/SiteHome.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <h1 align="center">Veterinaria Pupies</h1>
+        <marquee>Atencion personalizada. Abierto 24Hs los 7 dias de la semana</marquee>
+
+
+    </header>
+
+    <nav>
+        <table border="1">
+            <tr><p>Veterinaria Catalogo de Acciones:</p></tr>
+            <tr><td><p> <a href="/Cliente/Index">Administrar Cliente</a></p></td></tr>
+            <tr><td><p><a href="/Doctor/Index">Administrar Doctor</a></p></td></tr>
+            <tr><td><p><a href="/Paciente/Index">Administrar Paciente</a></p></td></tr>
+            <tr><td><p><a href="/HistorialPaciente/Index"> Administrar Historial Paciente</a></td></p></tr>
+            <tr><td><p><a href="/Producto/Index">Administrar Producto</a></p></td></tr>
+            <tr><td><p><a href="/FacturaProducto/Index"> Administrar Factura Producto</a></p></td></tr>
+            <tr><td><p><a href="/FacturaServicio/Index"> Administrar Factura Servicio</a></p></td></tr>
+            <tr><td><p><a href="/Atencion/Index"> Administrar Atencion</a></p></td></tr>
+            <tr><td><p><a href="/Sala/Index"> Administrar Sala</a></p></td></tr>
+            <tr><td><p><a href="/Turno/Index"> Administrar Turno</a></p></td></tr>
+            <tr><td><p><a href="/Home/Index"> REGRESAR A HOME</a></p></td></tr>
+        </table>
+    </nav>
+
+    <section>
+        @RenderBody()
+    </section>
+
+    <aside>
+
+
+    </aside>
+
+    <footer>
+        @*<img src="~/Content/lvp.logo-soyvet-1.png" width="20" height="20" />*@ Derechos reservados por Puppies SA ~ 2019
+    </footer>
+
+</body>
+</html>

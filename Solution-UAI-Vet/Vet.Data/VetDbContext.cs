@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web;
 using Vet.Domain;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 
 namespace Vet.Data
@@ -28,8 +29,13 @@ namespace Vet.Data
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Sala> Salas { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 
-    
 }
+

@@ -14,6 +14,7 @@ namespace Vet.Websde.Controllers
     public class DoctorController : Controller
     {
         private VetDbContext db = new VetDbContext();
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(DoctorController));
 
         // GET: Doctor
         public ActionResult Index()
@@ -53,6 +54,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Doctores.Add(doctor);
                 db.SaveChanges();
+                log.Info("Creacion de doctor");
                 return RedirectToAction("Index");
             }
 
@@ -85,6 +87,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(doctor).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de doctor");
                 return RedirectToAction("Index");
             }
             return View(doctor);
@@ -113,6 +116,7 @@ namespace Vet.Websde.Controllers
             Doctor doctor = db.Doctores.Find(id);
             db.Doctores.Remove(doctor);
             db.SaveChanges();
+            log.Info("Eliminacion de doctor");
             return RedirectToAction("Index");
         }
 

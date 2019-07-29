@@ -4,6 +4,17 @@
     <title>@ViewBag.Title  Veterinaria</title>
 
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#accordion").accordion();
+        });
+
+    </script>
+
 </head>
 <body>
     <header>
@@ -12,21 +23,27 @@
     </header>
 
     <nav>
-        <table border="1">
-                <tr><p>Veterinaria Catalogo de Acciones:</p></tr>
-               <tr><td><p> <a href="/Cliente/Index">Administrar Cliente</a></p></td></tr>
-               <tr><td><p><a href="/Doctor/Index">Administrar Doctor</a></p></td></tr>
-                <tr><td><p><a href="/Paciente/Index">Administrar Paciente</a></p></td></tr>
-                <tr><td><p><a href="/HistorialPaciente/Index"> Administrar Historial Paciente</a></td></p></tr>
-                <tr><td><p><a href="/Producto/Index">Administrar Producto</a></p></td></tr>
-                <tr><td><p><a href="/FacturaProducto/Index"> Administrar Factura Producto</a></p></td></tr>
-               <tr><td><p><a href="/FacturaServicio/Index"> Administrar Factura Servicio</a></p></td></tr>
-                @*<p><a href="/DetalleFacturaProducto/Index"> Ver Detalle Factura Producto </a></p>*@
-                <tr><td><p><a href="/Atencion/Index"> Administrar Atencion</a></p></td></tr>
-                <tr><td><p><a href="/Sala/Index"> Administrar Sala</a></p></td></tr>
-                <tr><td><p><a href="/Turno/Index"> Administrar Turno</a></p></td></tr>
-                <tr><td><p><a href="/Home/Index"> REGRESAR A HOME</a></p></td></tr>
-        </table>
+        <div id="accordion">
+            <h3>Catalogo de Acciones</h3>
+            <div>
+            <table border="1">
+           
+                    <tr><p>Acciones:</p></tr>
+                    <tr><td><p> <a href="/Cliente/Index">Administrar Cliente</a></p></td></tr>
+                    <tr><td><p><a href="/Doctor/Index">Administrar Doctor</a></p></td></tr>
+                    <tr><td><p><a href="/Paciente/Index">Administrar Paciente</a></p></td></tr>
+                    <tr><td><p><a href="/HistorialPaciente/Index"> Administrar Historial Paciente</a></td></p></tr>
+                    <tr><td><p><a href="/Producto/Index">Administrar Producto</a></p></td></tr>
+                    <tr><td><p><a href="/FacturaProducto/Index"> Administrar Factura Producto</a></p></td></tr>
+                    <tr><td><p><a href="/FacturaServicio/Index"> Administrar Factura Servicio</a></p></td></tr>
+                    @*<p><a href="/DetalleFacturaProducto/Index"> Ver Detalle Factura Producto </a></p>*@
+                    <tr><td><p><a href="/Atencion/Index"> Administrar Atencion</a></p></td></tr>
+                    <tr><td><p><a href="/Sala/Index"> Administrar Sala</a></p></td></tr>
+                    <tr><td><p><a href="/Turno/Index"> Administrar Turno</a></p></td></tr>
+                    <tr><td><p><a href="/Home/Index"> REGRESAR A HOME</a></p></td></tr>    
+            </table>
+           </div>
+        </div>
     </nav>
 
     <section>

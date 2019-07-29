@@ -56,6 +56,8 @@
     <Compile Include="FacturaProducto.cs" />
     <Compile Include="FacturaServicio.cs" />
     <Compile Include="HistorialPaciente.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

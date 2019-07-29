@@ -14,6 +14,7 @@ namespace Vet.Websde.Controllers
     public class HistorialPacienteController : Controller
     {
         private VetDbContext db = new VetDbContext();
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(HistorialPacienteController));
 
         // GET: HistorialPaciente
         public ActionResult Index()
@@ -56,6 +57,7 @@ namespace Vet.Websde.Controllers
                 historialPaciente.Fecha = DateTime.Now;
                 db.HistorialPacientes.Add(historialPaciente);
                 db.SaveChanges();
+                log.Info("Creacion de historial de paciente");
                 return RedirectToAction("Index");
             }
 
@@ -90,6 +92,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(historialPaciente).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de historial de paciente");
                 return RedirectToAction("Index");
             }
             ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre", historialPaciente.IdPaciente);
@@ -119,6 +122,7 @@ namespace Vet.Websde.Controllers
             HistorialPaciente historialPaciente = db.HistorialPacientes.Find(id);
             db.HistorialPacientes.Remove(historialPaciente);
             db.SaveChanges();
+            log.Info("Eliminacion de historial de paciente");
             return RedirectToAction("Index");
         }
 

@@ -9,11 +9,17 @@ using System.Web.Mvc;
 using Vet.Data;
 using Vet.Domain;
 
+
 namespace Vet.Websde.Controllers
 {
     public class SalaController : Controller
     {
         private VetDbContext db = new VetDbContext();
+
+
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(SalaController));
+
+
 
         // GET: Sala
         public ActionResult Index()
@@ -53,6 +59,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Salas.Add(sala);
                 db.SaveChanges();
+                log.Info(string.Format("Creacion de una sala / {0} / {1} / {2}", sala.Id, sala.Localizacion, sala.Nombre));
                 return RedirectToAction("Index");
             }
 
@@ -85,6 +92,8 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(sala).State = EntityState.Modified;
                 db.SaveChanges();
+                string dato;
+                log.Info(string.Format("Edicion de una sala / {0} / {1} / {2}", sala.Id, sala.Localizacion, sala.Nombre));
                 return RedirectToAction("Index");
             }
             return View(sala);
@@ -113,6 +122,7 @@ namespace Vet.Websde.Controllers
             Sala sala = db.Salas.Find(id);
             db.Salas.Remove(sala);
             db.SaveChanges();
+            log.Info(string.Format("Eliminacion de una sala / {0} ", id));
             return RedirectToAction("Index");
         }
 

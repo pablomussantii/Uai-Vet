@@ -15,6 +15,8 @@ namespace Vet.Websde.Controllers
     {
         private VetDbContext db = new VetDbContext();
 
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(AtencionController));
+
         // GET: Atencion
         public ActionResult Index()
         {
@@ -57,13 +59,14 @@ namespace Vet.Websde.Controllers
                 int valor = 0;
                 RepositoryAtencion repository = new RepositoryAtencion();
 
-                foreach (var x in repository.List())
-                {
-                    if (x.Dia == atencion.Dia && x.HorarioTurno == atencion.HorarioTurno && x.IdSala == atencion.IdSala)
-                    {
-                        valor = 1;
-                    }
-                }
+                valor = atencion.verificardisponibilidadsala(repository, atencion);
+                //foreach (var x in repository.List())
+                //{
+                //    if (x.Dia == atencion.Dia && x.HorarioTurno == atencion.HorarioTurno && x.IdSala == atencion.IdSala)
+                //    {
+                //        valor = 1;
+                //    }
+                //}
 
                 if (valor==1)
                 {
@@ -74,6 +77,7 @@ namespace Vet.Websde.Controllers
                 {
                     db.Atenciones.Add(atencion);
                     db.SaveChanges();
+                    log.Info("Creacion de atencion");
                     return RedirectToAction("Index");
                 }
             }
@@ -111,6 +115,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(atencion).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de atencion");
                 return RedirectToAction("Index");
             }
             ViewBag.IdDoctor = new SelectList(db.Doctores, "Id", "Nombre", atencion.IdDoctor);
@@ -141,6 +146,7 @@ namespace Vet.Websde.Controllers
             Atencion atencion = db.Atenciones.Find(id);
             db.Atenciones.Remove(atencion);
             db.SaveChanges();
+            log.Info("Eliminacion de atencion");
             return RedirectToAction("Index");
         }
 

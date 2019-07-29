@@ -14,6 +14,7 @@ namespace Vet.Websde.Controllers
     public class FacturaServicioController : Controller
     {
         private VetDbContext db = new VetDbContext();
+        log4net.ILog log = log4net.LogManager.GetLogger(typeof(FacturaServicioController));
 
         // GET: FacturaServicio
         public ActionResult Index()
@@ -71,6 +72,7 @@ namespace Vet.Websde.Controllers
 
                 db.FacturaServicios.Add(facturaServicio);
                 db.SaveChanges();
+                log.Info("Creacion de Factura servicio");
                 return RedirectToAction("Index");
             }
 
@@ -105,6 +107,7 @@ namespace Vet.Websde.Controllers
             {
                 db.Entry(facturaServicio).State = EntityState.Modified;
                 db.SaveChanges();
+                log.Info("Edicion de Factura servicio");
                 return RedirectToAction("Index");
             }
             ViewBag.IdTurno = new SelectList(db.Turnos, "Id", "Id", facturaServicio.IdTurno);
@@ -134,6 +137,7 @@ namespace Vet.Websde.Controllers
             FacturaServicio facturaServicio = db.FacturaServicios.Find(id);
             db.FacturaServicios.Remove(facturaServicio);
             db.SaveChanges();
+            log.Info("Eliminacion de Factura servicio");
             return RedirectToAction("Index");
         }
 
