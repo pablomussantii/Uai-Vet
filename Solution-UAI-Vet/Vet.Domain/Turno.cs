@@ -41,7 +41,7 @@ namespace Vet.Domain
         {
             foreach (var item in turnos.List())
             {
-                if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
+                if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion && item.Cancelado == false)
                 {
                     return 1;
                 }

@@ -348,6 +348,14 @@ namespace Vet.Websde.Controllers
 
         }
 
+        public JsonResult GetEvents()
+        {
+            using (VetDbContext dc = new VetDbContext())
+            {
+                var events = dc.Turnos.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
 
     }
 }
