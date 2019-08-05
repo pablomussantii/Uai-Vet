@@ -44,7 +44,7 @@
     <div class="form-group">
         @Html.Label("Imagen Actual", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <img width="50" height="50" src="@Url.Action("ConvertirImagen", "Paciente", new { ImagenMascota = Model.ImagenMascota })"
+            <img width="50" height="50" src="@Url.Action("getimage", "Paciente", new { id = Model.Id })"
         </div>
     </div>
 

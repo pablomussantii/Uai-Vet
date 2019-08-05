@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Vet.Data;
 using Vet.Domain;
@@ -20,12 +23,27 @@ namespace Vet.Websde.Controllers
 
 
 
-        public ActionResult Convertirimagen(int codigomascota)
-        {
-            var imagenmascota = db.Pacientes.Where(x => x.Id == codigomascota).FirstOrDefault();
-            return File(imagenmascota.ImagenMascota, "image/jpeg");
-        }
+        //public ActionResult Convertirimagen(int codigomascota)
+        //{
+        //    var imagenmascota = db.Pacientes.Where(x => x.Id == codigomascota).FirstOrDefault();
+        //    return File(imagenmascota.ImagenMascota, "image/jpeg");
+        //}
 
+        public ActionResult getimage(int id)
+        {
+            Paciente paciente = db.Pacientes.Find(id);
+            byte[] byteimagen = paciente.ImagenMascota;
+
+            MemoryStream memorystream = new MemoryStream(byteimagen);
+            Image image = Image.FromStream(memorystream);
+
+            memorystream = new MemoryStream();
+            image.Save(memorystream, ImageFormat.Jpeg);
+            memorystream.Position = 0;
+
+            return File(memorystream, "image/jpg");
+
+        }
 
 
 
@@ -67,13 +85,20 @@ namespace Vet.Websde.Controllers
         {
             if (ImagenMascota != null && ImagenMascota.ContentLength > 0)
             {
-                byte[] imagendata = null;
-                using (var binarypaciente = new BinaryReader(ImagenMascota.InputStream))
-                {
-                    imagendata = binarypaciente.ReadBytes(ImagenMascota.ContentLength);
+                HttpPostedFileBase fileBase = Request.Files[0];
+                WebImage image = new WebImage(fileBase.InputStream);
 
-                }
-                paciente.ImagenMascota = imagendata;
+                paciente.ImagenMascota = image.GetBytes();
+
+
+
+                //byte[] imagendata = null;
+                //using (var binarypaciente = new BinaryReader(ImagenMascota.InputStream))
+                //{
+                //    imagendata = binarypaciente.ReadBytes(ImagenMascota.ContentLength);
+
+                //}
+                //paciente.ImagenMascota = imagendata;
             }
             if (ModelState.IsValid)
             {

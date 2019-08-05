@@ -45,7 +45,7 @@
         </td>
 
         <td>
-            <img width="50" height="50" src="@Url.Action("ConvertirImagen", "Paciente", new { ImagenMascota = item.ImagenMascota })"
+            <img width="50" height="50" src="@Url.Action("getimage", "Paciente", new { id = item.Id })"
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Raza)
