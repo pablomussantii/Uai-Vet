@@ -56,9 +56,21 @@ namespace Vet.Websde.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                RepositoryDoctor repositoryDoctor = new RepositoryDoctor();
+
+                foreach (var item in repositoryDoctor.List())
+                {
+                    if (item.Id == atencion.IdDoctor)
+                    {
+                        atencion.TipoEspecialidad = item.TipoEspecialidad;
+                    }
+                }
+
+
                 int valor = 0;
                 RepositoryAtencion repository = new RepositoryAtencion();
-
+             
                 valor = atencion.verificardisponibilidadsala(repository, atencion);
                 //foreach (var x in repository.List())
                 //{

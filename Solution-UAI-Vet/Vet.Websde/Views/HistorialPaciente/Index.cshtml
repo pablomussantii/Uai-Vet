@@ -8,12 +8,12 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear historial de paciente", "Create")
 </p>
 <table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Paciente.Nombre)
+            @Html.Label("Nombre del Paciente", new { @class = "control-label col-md-2" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.Fecha)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

@@ -11,8 +11,11 @@ Si se desea consultar turnos por favor ingrese la fecha:
 
 <form method="post" action="/Turno/CReserva">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @ViewBag.advertenciaincompleto
     <label> Fecha: </label>
-    <input type="date" name="Fecha" id="Fecha" /> <br />
+
+    <input type="date" name="Fecha" id="Fecha" value="10/10/2010" /> <br />
+
     <input type="submit" name="enviar" value="enviar" />
 
 
@@ -44,5 +47,7 @@ Si se desea consultar turnos por favor ingrese la fecha:
 
 
 </table>
+
+
 
 

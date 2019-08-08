@@ -8,12 +8,12 @@ namespace Vet.Domain.SharedKernel
 {
     public enum Dia
     {
-        Lunes = 1,
-        Martes = 2,
-        Miercoles = 3,
-        Jueves = 4,
-        Viernes = 5,
-        Sabado = 6,
-        Domingo = 7
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 3,
+        Thursday = 4,
+        Friday = 5,
+        Saturday = 6,
+        Sunday = 7
     }
 }

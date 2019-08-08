@@ -6,15 +6,15 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nueva atencion", "Create")
 </p>
 <table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Doctor.Nombre)
+            @Html.Label("Nombre del Doctor", new { @class = "control-label col-md-2" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sala.Nombre)
+            @Html.Label("Nombre de la Sala", new { @class = "control-label col-md-2" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TipoEspecialidad)
@@ -46,9 +46,9 @@
             @Html.DisplayFor(modelItem => item.Dia)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

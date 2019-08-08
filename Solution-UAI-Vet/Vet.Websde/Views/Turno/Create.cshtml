@@ -28,8 +28,6 @@
         </div>
     </div>
 
-    <input type="submit" value="Cargar" class="btn btn-default" />
-
     <div class="form-group">
         @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -38,8 +36,22 @@
         </div>
     </div>
 
+
+
     <div class="form-group">
-        @Html.LabelFor(model => model.IdPaciente, "IdPaciente", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+
+
+    <input type="submit" value="Cargar" class="btn btn-default" />
+
+    <div class="form-group">
+        @Html.Label("Paciente", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("IdPaciente", null, htmlAttributes: new { @class = "form-control" })
 
@@ -47,7 +59,8 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.IdAtencion, "IdAtencion", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.IdAtencion, "IdAtencion", htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @Html.Label("Atencion", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @{
                 if (ViewBag.IdAtencion == null)
@@ -56,6 +69,10 @@
                 }
                 else
                 {
+                    @*@Html.DropDownListFor(model => model.IdAtencion, (SelectList)ViewBag.Atenciones)
+
+                    @Html.DropDownList("IdAtencion", ((List<Vet.Domain.Atencion>)ViewBag.Atenciones).Select(m => new SelectListItem { Text = m.Id.ToString(), Value = m.Id.ToString() }))*@
+
                     @Html.DropDownList("IdAtencion", null, htmlAttributes: new { @class = "form-control" })
                 }
 
@@ -66,13 +83,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
-
-        </div>
-    </div>
 
 
     <div class="form-group">
@@ -84,7 +94,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la Lista", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

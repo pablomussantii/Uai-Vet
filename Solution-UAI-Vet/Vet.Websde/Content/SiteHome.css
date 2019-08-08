@@ -104,3 +104,29 @@ aside {
 nav td {
     background-color:darkslateblue;
 }
+
+.accordion {
+    background-color: #4d5f63;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
+ 
+.accordion button  {
+
+    background-color: aquamarine;
+}

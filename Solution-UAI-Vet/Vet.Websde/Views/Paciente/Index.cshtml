@@ -7,12 +7,12 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo paciente", "Create")
 </p>
 <table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.NombreCompleto)
+            @Html.Label("Nombre del Cliente", new { @class = "control-label col-md-2" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Genero)
@@ -54,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.TipodeSangre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

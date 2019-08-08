@@ -72,8 +72,7 @@ namespace Vet.Websde.Controllers
         // GET: Turno/Create
         public ActionResult Create()
         {
-            RepositoryAtencion repositoryatencion = new RepositoryAtencion();
-           ViewBag.atenciones= repositoryatencion.List();
+
             //ViewBag.IdAtencion = new SelectList(db.Atenciones, "Id", "Id");
             ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre");
             return View();
@@ -86,18 +85,74 @@ namespace Vet.Websde.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TipoEspecialidad,Fecha,IdPaciente,IdAtencion,Hora,Abonado")] Turno turno)
         {
+            
             RepositoryAtencion repositoryatencion = new RepositoryAtencion();
             RepositoryTurno repositoryTurno = new RepositoryTurno();
-            List<Atencion> lstatencion = new List<Atencion>();
+            RepositoryDoctor repositoryDoctor = new RepositoryDoctor();
 
-            foreach (var item in repositoryatencion.List())
+            int valoratencion = 1;
+            string diaturno;
+            diaturno = turno.Fecha.DayOfWeek.ToString();
+            List<Atencion> lstatencionvalidas = new List<Atencion>();
+            if (turno.IdAtencion == 0)
             {
-                if (item.TipoEspecialidad == turno.TipoEspecialidad)
+                foreach (var item in repositoryatencion.List())
                 {
-                    lstatencion.Add(item);
+                    turno.IdAtencion = item.Id;
+                    valoratencion = turno.verificarcoordinacionconatencion(repositoryatencion, turno);
+
+                    if (valoratencion == 0)
+                    {
+
+                        if (turno.TipoEspecialidad == item.TipoEspecialidad)
+                        {
+
+                            if (turno.Atencion.Dia.ToString() == diaturno)
+                            {
+                                foreach (var item3 in repositoryDoctor.List())
+                                {
+                                    if (item.IdDoctor == item3.Id)
+                                    {
+                                        item.Doctor = item3;
+                                    }
+                                }
+
+                                lstatencionvalidas.Add(item);
+                            }
+
+                            valoratencion = 1;
+
+
+                        }
+
+                    }
+
                 }
-            }
-            ViewBag.IdAtencion = new SelectList(lstatencion, "Id", "Id", turno.IdAtencion);
+            
+                turno.IdAtencion = 0;
+                //IEnumerable<Atencion> lst;
+                //lst = lstatencionvalidas;
+                if (lstatencionvalidas.Count > 0)
+                {
+                    //ViewBag.Atenciones = lstatencionvalidas.Select(m => new SelectListItem { Text = m.Id.ToString(), Value = m.Id.ToString() });
+                    ViewBag.IdAtencion = new SelectList(lstatencionvalidas, "Id", "Doctor.Nombre");
+                }
+
+                ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre", turno.IdPaciente);
+                return View(turno);
+
+             }
+
+                //List<Atencion> lstatencion = new List<Atencion>();
+
+                //foreach (var item in repositoryatencion.List())
+                //{
+                //    if (item.TipoEspecialidad == turno.TipoEspecialidad)
+                //    {
+                //        lstatencion.Add(item);
+                //    }
+                //}
+                //ViewBag.IdAtencion = new SelectList(lstatencion, "Id", "Id", turno.IdAtencion);
                 if (ModelState.IsValid)
                 {
 
@@ -107,82 +162,28 @@ namespace Vet.Websde.Controllers
 
 
 
-                    //if (turno.Hora >= 25 || turno.Hora <= -1)
-                    //{
-                    //    ViewBag.advertencia3 = "La hora ingresada no es valida";
-                    //    valor2 = 1;
-                    //}
-                    //else
-                    //{
-                    //    valor2 = 0;
-                    //}
 
 
 
                     Atencion natencion = new Atencion();
                     natencion = repositoryatencion.GetById(turno.IdAtencion);
                     int valor = 0;
-                    //ViewBag.advertencia2 = "No corresponde la atencion con lo que se solicita";
-                    //int valor2 = 0;
 
 
-                    valor = turno.verificarrepeticion(repositoryTurno, turno);
-                    
-                    //foreach (var item in repositoryTurno.List())
-                    //{
-                    //    if (item.Fecha == turno.Fecha && item.Hora == turno.Hora && item.IdAtencion == turno.IdAtencion)
-                    //    {
-                    //        ViewBag.advertencia = "Ya hay alguien asignado en este horario";
-                    //        valor = 1;
-                    //    }
-                    
-                    //}
+                valor = turno.verificarrepeticion(repositoryTurno, turno);
 
-                    int valor3 = 1;
 
-                    valor3 = turno.verificarcoordinacionconatencion(repositoryatencion, turno);
 
-                    //foreach (var item in repositoryatencion.List())
-                    //{
-                    //    if (item.Id == turno.IdAtencion)
-                    //    {
-                    //        turno.Atencion = item;
-                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Mañana)
-                    //        {
-                    //            if (turno.Hora >= 6 && turno.Hora <= 12)
-                    //            {
-                    //                valor3 = 0;
-                    //            }
-                    //        }
+                int valor3 = 1;
 
-                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Tarde)
-                    //        {
-                    //            if (turno.Hora >= 13 && turno.Hora <= 19)
-                    //            {
-                    //                valor3 = 0;
-                    //            }
+                //valor3 = turno.verificarcoordinacionconatencion(repositoryatencion, turno);
 
-                    //        }
 
-                    //        if (item.HorarioTurno == Domain.SharedKernel.HorarioTurno.Noche)
-                    //        {
-                    //            if (turno.Hora >= 20 && turno.Hora <= 23)
-                    //            {
-                    //                valor3 = 0;
-                    //            }
-                    //            if (turno.Hora >= 0 && turno.Hora <= 5)
-                    //            {
-                    //                valor3 = 0;
-                    //            }
-
-                    //        }
-                    //    } 
-
-                    //}
+                valor3 = 0;
 
                     if (valor3 == 1)
                     {
-                        ViewBag.advertencia4 = string.Format("El doctor no se encuentra en este horario, esta en el horario de {0} .",turno.Atencion.HorarioTurno);
+                        ViewBag.advertencia4 = string.Format("El doctor no se encuentra en este horario, esta en el horario de {0} .", natencion.HorarioTurno);
                     }
 
                     if (valor == 1)
@@ -201,16 +202,29 @@ namespace Vet.Websde.Controllers
                     }
                     else
                     {
+
                         db.Turnos.Add(turno);
                         db.SaveChanges();
-                    log.Info("Creacion de turno");
+                        log.Info("Creacion de turno");
+                        //int valor99 = 0;
+                        //foreach (var item in repositoryatencion.List())
+                        //{
+
+                        //    if (valor99 < item.Id)
+                        //    {
+                        //        valor99 = item.Id;
+                        //    }
+
+                        //}
+                        //repositoryatencion.Delete(valor99);
+                        //valor99 = 0;
                         return RedirectToAction("Index");
                     }
 
-                
+
                 }
 
-           
+            
 
            
             ViewBag.IdPaciente = new SelectList(db.Pacientes, "Id", "Nombre", turno.IdPaciente);
@@ -315,7 +329,7 @@ namespace Vet.Websde.Controllers
         public ActionResult CReserva()
         {
             var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
-          
+            ViewBag.Diaactual = DateTime.Now;
             return View(turnos);
         }
 
@@ -324,27 +338,29 @@ namespace Vet.Websde.Controllers
         public ActionResult CReserva(DateTime Fecha)
         {
 
-            List<Turno> lstturno = new List<Turno>();
-            var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
-            foreach (var item in turnos)
-            {
-                if (item.Fecha.ToString("dd/MM/yy") == Fecha.ToString("dd/MM/yy"))
+                List<Turno> lstturno = new List<Turno>();
+                var turnos = db.Turnos.Include(t => t.Atencion).Include(t => t.Paciente);
+                foreach (var item in turnos)
                 {
-                    if (item.Cancelado == true)
+                    if (item.Fecha.ToString("dd/MM/yy") == Fecha.ToString("dd/MM/yy"))
                     {
+                        if (item.Cancelado == true)
+                        {
+
+                        }
+                        else
+                        {
+                            lstturno.Add(item);
+                        }
 
                     }
-                    else
-                    {
-                        lstturno.Add(item);
-                    }
-                   
                 }
-            }
 
-            IEnumerable<Turno> lstordenada = lstturno.OrderBy(Turno => Turno.Hora);
+                IEnumerable<Turno> lstordenada = lstturno.OrderBy(Turno => Turno.Hora);
 
-            return View(lstordenada);
+                return View(lstordenada);
+            
+
 
         }
 

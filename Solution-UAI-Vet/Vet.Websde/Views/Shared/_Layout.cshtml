@@ -7,14 +7,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script>
-
-        $(function () {
-            $("#accordion").accordion();
-        });
-
-    </script>
-
+    <script src="~/Content/AcordeonJs.js"></script>
 </head>
 <body>
     <header>
@@ -23,12 +16,14 @@
     </header>
 
     <nav>
+
         <div id="accordion">
-            <h3>Catalogo de Acciones</h3>
-            <div>
-            <table border="1">
-           
-                
+
+            <button class="accordion">  <h3>Catalogo de Acciones</h3> </button>
+            <div class="panel">
+
+                <table border="1">
+
                     <tr><td><p> <a href="/Cliente/Index">Administrar Cliente</a></p></td></tr>
                     <tr><td><p><a href="/Doctor/Index">Administrar Doctor</a></p></td></tr>
                     <tr><td><p><a href="/Paciente/Index">Administrar Paciente</a></p></td></tr>
@@ -36,24 +31,75 @@
                     <tr><td><p><a href="/Producto/Index">Administrar Producto</a></p></td></tr>
                     <tr><td><p><a href="/FacturaProducto/Index"> Administrar Factura Producto</a></p></td></tr>
                     <tr><td><p><a href="/FacturaServicio/Index"> Administrar Factura Servicio</a></p></td></tr>
-                    @*<p><a href="/DetalleFacturaProducto/Index"> Ver Detalle Factura Producto </a></p>*@
                     <tr><td><p><a href="/Atencion/Index"> Administrar Atencion</a></p></td></tr>
                     <tr><td><p><a href="/Sala/Index"> Administrar Sala</a></p></td></tr>
                     <tr><td><p><a href="/Turno/Index"> Administrar Turno</a></p></td></tr>
-         
-            </table>
-           </div>
+
+                </table>
+
+            </div>
+
+
         </div>
+
     </nav>
 
     <section>
         @RenderBody()
+
     </section>
 
     <footer>
-        @*<img src="~/Content/lvp.logo-soyvet-1.png" width="20" height="20" />*@ Derechos reservados por Puppies SA ~ 2019 
+        @*<img src="~/Content/lvp.logo-soyvet-1.png" width="20" height="20" />*@ Derechos reservados por Puppies SA ~ 2019
     </footer>
 
-    @RenderSection("Scripts",false)
+    <script>
+
+        //$(function () {
+        //    $("#accordion").accordion();
+        //});
+
+
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+    </script>
+
+    <style>
+        .panel {
+            padding: 0 18px;
+            background-color: blue;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .accordion:after {
+            content: '\02795'; /* Unicode character for "plus" sign (+) */
+            font-size: 13px;
+            color: #777;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2796"; /* Unicode character for "minus" sign (-) */
+        }
+    </style>
+
+    @RenderSection("Scripts", false)
 </body>
 </html>

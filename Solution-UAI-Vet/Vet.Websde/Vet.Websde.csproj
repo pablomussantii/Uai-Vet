@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AcordeonJs.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\SiteHome.css" />
     <Content Include="Global.asax" />
