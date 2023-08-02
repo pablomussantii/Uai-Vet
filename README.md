@@ -1,6 +1,6 @@
 # Proyecto UAI VET
 
-Desarrollo web diseñado en 11 capas con integracion de WEB API que consiste en una administracion de turnos aplicado en el negocio veterinario. Se gestiona Turnos, Precios de consultas, Mascotas (Pacientes), Clientes (Dueño de la Mascota), Gestionar los tipos de servicios al turno y Movimientos.
+Desarrollo web diseñado en 4 capas con integracion EE que consiste en una administracion de turnos aplicado en el negocio veterinario. Se gestiona Turnos, Facturacion, Medicos, Productos requeridos, Mascotas y su Historial (Pacientes) y Clientes (Dueño de la Mascota).
 
 
 # Last Update / Some Feactures
